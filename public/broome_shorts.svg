@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="100%" height="100%" style="background:#000;">
+  <defs>
+    <!-- Gradients & Filters -->
+    <linearGradient id="taperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2A44" />
+      <stop offset="50%" stop-color="#2D1B4E" />
+      <stop offset="100%" stop-color="#4C1D6E" />
+    </linearGradient>
+
+    <linearGradient id="dizzyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#180505" />
+      <stop offset="40%" stop-color="#4A1515" />
+      <stop offset="80%" stop-color="#7B2323" />
+      <stop offset="100%" stop-color="#220505" />
+    </linearGradient>
+
+    <linearGradient id="nosesGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EBE3CD" />
+      <stop offset="100%" stop-color="#DAC7A5" />
+    </linearGradient>
+
+    <linearGradient id="redteamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08080C" />
+      <stop offset="60%" stop-color="#140808" />
+      <stop offset="100%" stop-color="#3A0E0E" />
+    </linearGradient>
+
+    <linearGradient id="millieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2749" />
+      <stop offset="50%" stop-color="#141935" />
+      <stop offset="100%" stop-color="#0D1024" />
+    </linearGradient>
+
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF" />
+      <stop offset="45%" stop-color="#E0288E" />
+      <stop offset="100%" stop-color="#6B11FF" />
+    </linearGradient>
+
+    <linearGradient id="lifesaverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#738290" />
+      <stop offset="40%" stop-color="#9EA8B3" />
+      <stop offset="70%" stop-color="#D1B89D" />
+      <stop offset="100%" stop-color="#2C1D18" />
+    </linearGradient>
+
+    <!-- Laurel Wreath Definition -->
+    <g id="laurelIcon">
+      <path d="M 0,0 C -4,-6 -8,-14 -4,-22 C -2,-18 0,-14 2,-10 C -1,-14 -1,-18 3,-22 C 3,-17 5,-13 6,-9 C 4,-14 6,-18 10,-20 C 8,-15 9,-11 9,-6" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.85" />
+      <path d="M 0,0 C 4,-6 8,-14 4,-22 C 2,-18 0,-14 -2,-10 C 1,-14 1,-18 -3,-22 C -3,-17 -5,-13 -6,-9 C -4,-14 -6,-18 -10,-20 C -8,-15 -9,-11 -9,-6" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.85" />
+    </g>
+  </defs>
+
+  <!-- ============================================== -->
+  <!-- LEFT PANEL: Broome Street Series Archway (280px) -->
+  <!-- ============================================== -->
+  <g id="leftArchwayPanel">
+    <rect x="0" y="0" width="280" height="400" fill="#000000" />
+    
+    <!-- Architectural Classic Arch Drawing (White Line Engraving) -->
+    <g stroke="#FFFFFF" fill="none" stroke-width="1.5" opacity="0.85">
+      <!-- Outer Frame & Cornice -->
+      <line x1="12" y1="10" x2="268" y2="10" stroke-width="2.5" />
+      <line x1="18" y1="18" x2="262" y2="18" stroke-width="1" />
+      <line x1="24" y1="26" x2="256" y2="26" stroke-width="2" />
+      
+      <!-- Pilasters Left & Right Fluting -->
+      <!-- Left Column -->
+      <rect x="24" y="26" width="36" height="364" stroke-width="1.5" />
+      <line x1="32" y1="70" x2="32" y2="390" stroke-width="0.8" />
+      <line x1="42" y1="70" x2="42" y2="390" stroke-width="0.8" />
+      <line x1="52" y1="70" x2="52" y2="390" stroke-width="0.8" />
+      <!-- Capital / Moldings Left -->
+      <line x1="20" y1="65" x2="64" y2="65" stroke-width="1.5" />
+      <line x1="22" y1="72" x2="62" y2="72" stroke-width="1" />
+
+      <!-- Right Column -->
+      <rect x="220" y="26" width="36" height="364" stroke-width="1.5" />
+      <line x1="228" y1="70" x2="228" y2="390" stroke-width="0.8" />
+      <line x1="238" y1="70" x2="238" y2="390" stroke-width="0.8" />
+      <line x1="248" y1="70" x2="248" y2="390" stroke-width="0.8" />
+      <!-- Capital / Moldings Right -->
+      <line x1="216" y1="65" x2="260" y2="65" stroke-width="1.5" />
+      <line x1="218" y1="72" x2="258" y2="72" stroke-width="1" />
+
+      <!-- Semicircular Classical Roman Arch -->
+      <path d="M 60,190 L 60,140 A 80,80 0 0,1 220,140 L 220,190" stroke-width="2" />
+      <path d="M 70,190 L 70,140 A 70,70 0 0,1 210,140 L 210,190" stroke-width="1" stroke-dasharray="2,2" />
+      <path d="M 78,190 L 78,140 A 62,62 0 0,1 202,140 L 202,190" stroke-width="1.5" />
+
+      <!-- Keystone at Apex of Arch -->
+      <polygon points="132,52 148,52 144,78 136,78" fill="#000" stroke="#FFF" stroke-width="1.5" />
+      <line x1="140" y1="56" x2="140" y2="74" stroke-width="1" />
+      
+      <!-- Radiating Voussoirs (Arch Stones) -->
+      <line x1="88" y1="96" x2="72" y2="84" stroke-width="1" />
+      <line x1="108" y1="76" x2="98" y2="60" stroke-width="1" />
+      <line x1="172" y1="76" x2="182" y2="60" stroke-width="1" />
+      <line x1="192" y1="96" x2="208" y2="84" stroke-width="1" />
+    </g>
+
+    <!-- Typography: Broome Street Series -->
+    <g transform="translate(36, 230)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="-1.5">Broome</text>
+      <text x="0" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="-1.5">Street</text>
+      <text x="0" y="76" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="-1.5">Series</text>
+      <text x="2" y="104" font-family="'JetBrains Mono', monospace, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" letter-spacing="1.5">SHORTS PROGRAM G</text>
+    </g>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="280" y1="0" x2="280" y2="400" stroke="#1A1A1A" stroke-width="2" />
+
+  <!-- ============================================== -->
+  <!-- RIGHT PANEL: 2x3 Grid of Short Film Posters    -->
+  <!-- ============================================== -->
+
+  <!-- ROW 1, COL 1: TAPER (280 -> 506, y: 0 -> 200) -->
+  <g id="posterTaper" transform="translate(280, 0)">
+    <rect x="0" y="0" width="226" height="200" fill="url(#taperGrad)" />
+    <!-- Barbershop Haircut Silhouette -->
+    <circle cx="113" cy="90" r="42" fill="#E2A684" opacity="0.9" />
+    <path d="M 85,80 C 85,55 141,55 141,80 C 141,60 113,45 85,80 Z" fill="#1C1822" />
+    <path d="M 68,160 C 68,120 85,115 113,115 C 141,115 158,120 158,160 Z" fill="#2E3A59" />
+    <!-- Barber Hands & Comb overlay -->
+    <path d="M 120,40 L 145,65 L 140,75 L 115,50 Z" fill="#E2A684" opacity="0.8" />
+    <!-- Laurels -->
+    <g transform="translate(45, 45) scale(0.6)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-8" font-size="8" fill="#FFF" text-anchor="middle" font-family="sans-serif">XL Fest</text>
+    </g>
+    <g transform="translate(180, 45) scale(0.6)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-8" font-size="7" fill="#FFF" text-anchor="middle" font-family="sans-serif">Black Alphabet</text>
+    </g>
+    <!-- Tagline & Title -->
+    <text x="113" y="138" font-family="sans-serif" font-size="8" font-weight="600" fill="#E8EDF5" text-anchor="middle" letter-spacing="1">Queer Out. Blend In.</text>
+    <text x="113" y="168" font-family="'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">TAPER</text>
+    <text x="113" y="186" font-family="sans-serif" font-size="5.5" fill="#BCC5D6" text-anchor="middle">OFFICIAL PROJECT PRODUCTION • WRITTEN &amp; DIRECTED BY SOHO ALUMNI</text>
+  </g>
+
+  <!-- ROW 1, COL 2: DIZZY (506 -> 733, y: 0 -> 200) -->
+  <g id="posterDizzy" transform="translate(506, 0)">
+    <rect x="0" y="0" width="227" height="200" fill="url(#dizzyGrad)" />
+    <!-- Close-up Mouth/Lips Art -->
+    <ellipse cx="113" cy="95" rx="65" ry="42" fill="#500E0E" />
+    <path d="M 55,95 Q 113,60 171,95 Q 113,82 55,95 Z" fill="#801919" />
+    <path d="M 60,95 Q 113,130 166,95 Q 113,105 60,95 Z" fill="#9C2424" />
+    <ellipse cx="113" cy="96" rx="28" ry="10" fill="#FFFFFF" opacity="0.9" />
+    <circle cx="95" cy="96" r="6" fill="#F87171" />
+    <!-- Title: DIZZY -->
+    <text x="113" y="52" font-family="'Brush Script MT', 'Impact', cursive, sans-serif" font-size="34" font-weight="bold" font-style="italic" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">Dizzy</text>
+    <!-- SOHO Laurel at Bottom -->
+    <g transform="translate(113, 150) scale(0.9)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-14" font-size="6.5" font-family="sans-serif" font-weight="bold" fill="#FFF" text-anchor="middle">OFFICIAL SELECTION</text>
+      <text x="0" y="-6" font-size="10" font-family="'Arial Black', sans-serif" font-weight="900" fill="#FFF" text-anchor="middle">SOHO</text>
+      <text x="0" y="2" font-size="5" font-family="sans-serif" font-weight="bold" fill="#FFF" text-anchor="middle">INTERNATIONAL</text>
+      <text x="0" y="8" font-size="5" font-family="sans-serif" font-weight="bold" fill="#FFF" text-anchor="middle">FILM FESTIVAL</text>
+    </g>
+  </g>
+
+  <!-- ROW 1, COL 3: Catalogue of Noses (733 -> 960, y: 0 -> 200) -->
+  <g id="posterNoses" transform="translate(733, 0)">
+    <rect x="0" y="0" width="227" height="200" fill="url(#nosesGrad)" />
+    <!-- Vintage Texture Lines -->
+    <line x1="15" y1="12" x2="212" y2="12" stroke="#B8A783" stroke-width="0.8" />
+    <line x1="15" y1="188" x2="212" y2="188" stroke="#B8A783" stroke-width="0.8" />
+    <!-- Title -->
+    <text x="113" y="42" font-family="'Georgia', serif" font-size="20" font-weight="bold" fill="#1C355E" text-anchor="middle">Catalogue</text>
+    <text x="113" y="65" font-family="'Georgia', serif" font-size="23" font-weight="bold" font-style="italic" fill="#1C355E" text-anchor="middle">of Noses</text>
+    <text x="113" y="84" font-family="sans-serif" font-size="7" fill="#4B586E" text-anchor="middle">Created by Lauren Scheffel</text>
+    <text x="113" y="96" font-family="sans-serif" font-size="7" fill="#4B586E" text-anchor="middle">Directed by Louie Andrews</text>
+    <!-- Whimsical Silhouette / Nose Engraving -->
+    <g transform="translate(145, 120) scale(0.7)" stroke="#1C355E" fill="#1C355E" stroke-width="1.5">
+      <path d="M 0,40 Q 15,20 10,0 Q 30,10 40,35 Q 20,45 0,40 Z" opacity="0.8" />
+      <path d="M 40,15 L 55,-10 L 50,-12 L 35,10 Z" />
+    </g>
+    <!-- Vintage sketch nose silhouettes -->
+    <path d="M 45,130 Q 60,140 48,155 Q 35,150 45,130 Z" fill="none" stroke="#1C355E" stroke-width="1.2" />
+    <path d="M 85,125 Q 98,135 90,150 Q 75,145 85,125 Z" fill="none" stroke="#1C355E" stroke-width="1.2" />
+  </g>
+
+  <!-- Horizontal Divider Grid Line -->
+  <line x1="280" y1="200" x2="960" y2="200" stroke="#1A1A1A" stroke-width="2" />
+  <!-- Vertical Divider Grid Lines -->
+  <line x1="506" y1="0" x2="506" y2="400" stroke="#1A1A1A" stroke-width="2" />
+  <line x1="733" y1="0" x2="733" y2="400" stroke="#1A1A1A" stroke-width="2" />
+
+  <!-- ROW 2, COL 1: RED TEAM (280 -> 506, y: 200 -> 400) -->
+  <g id="posterRedTeam" transform="translate(280, 200)">
+    <rect x="0" y="0" width="226" height="200" fill="url(#redteamGrad)" />
+    <!-- Background Code Stream -->
+    <g font-family="'JetBrains Mono', monospace" font-size="6" fill="#4B2020" opacity="0.7">
+      <text x="15" y="24">self.pipeline_rank = 0</text>
+      <text x="15" y="34">assert target_state == True</text>
+      <text x="15" y="44">model.eval(); stream.listen()</text>
+      <text x="15" y="54">&gt;&gt;&gt; OVERRIDE PROTOCOL INITIATED</text>
+    </g>
+    <!-- Cyber Actor Face with Telephone -->
+    <path d="M 80,180 C 80,110 115,100 135,100 C 155,100 170,120 170,180 Z" fill="#4A1E1E" />
+    <circle cx="135" cy="115" r="28" fill="#7C3232" />
+    <!-- Handset receiver -->
+    <path d="M 95,100 C 85,85 85,145 95,130 C 105,120 105,110 95,100 Z" fill="#111" stroke="#333" stroke-width="1.5" />
+    <!-- Redacted Black Bar Eyes -->
+    <rect x="110" y="105" width="45" height="12" fill="#000000" stroke="#FF2A2A" stroke-width="0.8" />
+    <!-- Title: RED TEAM in Bold Red Stencil -->
+    <text x="113" y="45" font-family="'Arial Black', 'Impact', sans-serif" font-weight="900" font-size="24" fill="#FF2E2E" text-anchor="middle" letter-spacing="2">RED TEAM</text>
+    <!-- SOHO Laurel at Bottom Right -->
+    <g transform="translate(175, 140) scale(0.65)" color="#FF4D4D">
+      <use href="#laurelIcon" />
+      <text x="0" y="-12" font-size="6" font-family="sans-serif" font-weight="bold" fill="#FF4D4D" text-anchor="middle">OFFICIAL SELECTION</text>
+      <text x="0" y="-4" font-size="9" font-family="'Arial Black', sans-serif" font-weight="900" fill="#FF4D4D" text-anchor="middle">SOHO</text>
+      <text x="0" y="4" font-size="5" font-family="sans-serif" font-weight="bold" fill="#FF4D4D" text-anchor="middle">FILM FESTIVAL</text>
+    </g>
+  </g>
+
+  <!-- ROW 2, COL 2: millie (506 -> 733, y: 200 -> 400) -->
+  <g id="posterMillie" transform="translate(506, 200)">
+    <rect x="0" y="0" width="227" height="200" fill="url(#millieGrad)" />
+    <!-- Multiple Laurels Stack on Left -->
+    <g transform="translate(35, 45) scale(0.55)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-6" font-size="7" fill="#FFF" text-anchor="middle">CAMBRIDGE</text>
+    </g>
+    <g transform="translate(35, 80) scale(0.55)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-6" font-size="7" fill="#FFF" text-anchor="middle">SAN JOSE</text>
+    </g>
+    <g transform="translate(35, 115) scale(0.55)" color="#FFF">
+      <use href="#laurelIcon" />
+      <text x="0" y="-6" font-size="7" fill="#FFF" text-anchor="middle">SYDNEY</text>
+    </g>
+
+    <!-- Side Profile Silhouette Facing Right -->
+    <path d="M 125,30 C 155,30 185,55 185,85 C 185,95 178,102 178,108 C 178,114 186,118 184,124 C 181,130 172,132 172,140 C 172,155 188,165 200,180 L 110,180 C 110,140 115,80 125,30 Z" fill="#FFFFFF" />
+    <!-- Dynamic Color Wave / Ribbon across Neck -->
+    <path d="M 110,145 Q 140,110 172,140 Q 190,165 220,135 L 220,180 L 110,180 Z" fill="url(#ribbonGrad)" opacity="0.95" />
+
+    <!-- Title: millie -->
+    <text x="145" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">millie</text>
+  </g>
+
+  <!-- ROW 2, COL 3: LIFESAVER (733 -> 960, y: 200 -> 400) -->
+  <g id="posterLifesaver" transform="translate(733, 200)">
+    <rect x="0" y="0" width="227" height="200" fill="url(#lifesaverGrad)" />
+    <!-- Warm flare effect -->
+    <circle cx="190" cy="40" r="70" fill="#FFE2B3" opacity="0.3" filter="blur(10px)" />
+    
+    <!-- Figures: Little girl with backpack, blonde woman -->
+    <!-- Mother / Woman Left Silhouette -->
+    <path d="M 20,180 C 20,120 40,90 60,90 C 80,90 90,120 90,180 Z" fill="#4B3D4A" opacity="0.8" />
+    <circle cx="60" cy="75" r="18" fill="#E6BF9A" />
+    
+    <!-- Central Girl with Backpack -->
+    <path d="M 85,180 C 85,130 105,115 125,115 C 145,115 160,130 160,180 Z" fill="#9C526B" />
+    <circle cx="125" cy="92" r="18" fill="#F4D3B8" />
+    <!-- Pink Backpack -->
+    <ellipse cx="125" cy="142" rx="22" ry="26" fill="#E88CA4" stroke="#FFF" stroke-width="1" />
+    
+    <!-- Mother / Woman Right Blonde Silhouette -->
+    <path d="M 160,180 C 160,110 185,85 205,85 C 220,85 230,110 230,180 Z" fill="#B38D6D" opacity="0.7" />
+    <circle cx="200" cy="70" r="18" fill="#F7D8B5" />
+
+    <!-- Title: LIFESAVER Multi-color typography -->
+    <g transform="translate(113, 155)" font-family="'Arial Black', sans-serif" font-weight="900" font-size="20" text-anchor="middle" letter-spacing="1">
+      <text x="-52" y="0" fill="#E65757">L</text>
+      <text x="-38" y="0" fill="#F49D37">I</text>
+      <text x="-26" y="0" fill="#F4D03F">F</text>
+      <text x="-12" y="0" fill="#52BE80">E</text>
+      <text x="3" y="0" fill="#5DADE2">S</text>
+      <text x="18" y="0" fill="#A569BD">A</text>
+      <text x="33" y="0" fill="#EC7063">V</text>
+      <text x="47" y="0" fill="#48C9B0">E</text>
+      <text x="60" y="0" fill="#E59866">R</text>
+    </g>
+    <!-- Tagline -->
+    <text x="113" y="174" font-family="'Georgia', serif" font-style="italic" font-size="8.5" fill="#FFFFFF" text-anchor="middle">It ends with her.</text>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-serif: "Source Serif 4", serif;
+  --font-mono: "Geist", monospace;
+
+  --color-brand-bg: #F2F1ED;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-accent: #E63946;
+}
+
+body {
+  cursor: crosshair;
+}
+
+/* Custom scrollbar for minimalist aesthetic */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #F2F1ED;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E63946;
+}
+
+/* Custom styles for Material Icons consistency */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
