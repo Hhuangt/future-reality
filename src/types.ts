@@ -40,6 +40,16 @@ export interface OpenCallCategory {
   deliverables: string;
 }
 
+export interface JuryMember {
+  id: string;
+  name: string;
+  role: string;
+  organization?: string;
+  bio?: string;
+  initials: string;
+  website?: string;
+}
+
 export interface GlobalNetworkItem {
   id: string;
   title: string;

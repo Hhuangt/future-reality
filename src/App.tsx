@@ -20,11 +20,15 @@ import {
 } from "./components/CollaboratorLogos";
 import { GlobalNetworkGallery } from "./components/GlobalNetworkGallery";
 import SubmissionGuidelinesAccordion from "./components/SubmissionGuidelinesAccordion";
+import JuryPage from "./components/JuryPage";
 
 
 export default function App() {
   // Navigation & UI States
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activePage, setActivePage] = useState<"home" | "jury">(
+    typeof window !== "undefined" && window.location.hash === "#jury" ? "jury" : "home"
+  );
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
@@ -82,11 +86,35 @@ export default function App() {
   // Scroll to section helpers
   const scrollTo = (id: string) => {
     setIsMenuOpen(false);
+    if (activePage !== "home") {
+      setActivePage("home");
+      window.history.replaceState(null, "", window.location.pathname);
+      window.setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  const openJury = () => {
+    setIsMenuOpen(false);
+    setActivePage("jury");
+    window.history.replaceState(null, "", "#jury");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const syncPage = () => {
+      setActivePage(window.location.hash === "#jury" ? "jury" : "home");
+    };
+    window.addEventListener("hashchange", syncPage);
+    syncPage();
+    return () => window.removeEventListener("hashchange", syncPage);
+  }, []);
 
   // Filtered search of programs/calls
   const filteredPrograms = programsData.filter(
@@ -171,6 +199,12 @@ export default function App() {
           >
             06. Submit Film
           </button>
+          <button 
+            onClick={openJury} 
+            className={`hover:text-brand-accent hover:underline underline-offset-4 transition-all duration-150 cursor-pointer ${activePage === "jury" ? "text-brand-accent underline underline-offset-4" : ""}`}
+          >
+            07. Jury
+          </button>
           
           <div className="h-4 w-[1px] bg-neutral-300 ml-2" />
           
@@ -246,11 +280,12 @@ export default function App() {
                       { num: "03", label: "Competition", id: "competition-section" },
                       { num: "04", label: "Network", id: "global-network-section" },
                       { num: "05", label: "Experience", id: "experience-section" },
-                      { num: "06", label: "Submit Film", id: "submit-film-section" }
+                      { num: "06", label: "Submit Film", id: "submit-film-section" },
+                      { num: "07", label: "Jury", id: "jury-page" }
                     ].map((section) => (
                       <li key={section.id}>
                         <button
-                          onClick={() => scrollTo(section.id)}
+                          onClick={() => section.id === "jury-page" ? openJury() : scrollTo(section.id)}
                           className="hover:translate-x-2 hover:text-brand-accent transition-all cursor-pointer text-left focus:outline-hidden"
                         >
                           {section.num}. {section.label}
@@ -436,7 +471,10 @@ export default function App() {
       </AnimatePresence>
 
       <main className="max-w-7xl mx-auto w-full px-6 md:px-16 space-y-16 md:space-y-32">
-        
+        {activePage === "jury" ? (
+          <JuryPage />
+        ) : (
+        <>
         {/* ==========================================================
             SECTION 1: HERO VIEWPORT
             ========================================================== */}
@@ -517,13 +555,14 @@ export default function App() {
             <div className="lg:col-span-4 flex flex-col items-start lg:items-end space-y-6">
               <div className="flex flex-col gap-4 w-full sm:w-80">
                 <a
-                  href="https://filmfreeway.com/FutureRealityAIFilmFestival?pending=true"
+                  href="https://luma.com/8pqcqqu0"
                   target="_blank"
+                  rel="noreferrer"
                   referrerPolicy="no-referrer"
                   className="px-6 py-4 border-[1.5px] border-brand-dark font-mono text-[11px] font-bold tracking-widest text-white bg-brand-dark hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-all duration-200 cursor-pointer text-center uppercase shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] block"
                   id="submit-film-hero-btn"
                 >
-                  Submit Your Film
+                  Purchase Early Bird Ticket
                 </a>
                 <button
                   onClick={() => setActiveModal("partner")}
@@ -849,12 +888,13 @@ export default function App() {
 
               <div className="lg:col-span-4 flex flex-col justify-center space-y-4">
                 <a
-                  href="https://filmfreeway.com/FutureRealityAIFilmFestival?pending=true"
+                  href="https://luma.com/8pqcqqu0"
                   target="_blank"
+                  rel="noreferrer"
                   referrerPolicy="no-referrer"
                   className="w-full text-center py-4 px-6 bg-brand-accent text-white hover:bg-white hover:text-brand-dark font-mono text-xs uppercase tracking-widest font-black transition-all shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] hover:shadow-none cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <span>Submit Film Via FilmFreeway</span>
+                  <span>Purchase Early Bird Ticket</span>
                   <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
                 </a>
 
@@ -869,6 +909,8 @@ export default function App() {
             </div>
           </div>
         </section>
+        </>
+        )}
       </main>
 
       {/* ==========================================================
@@ -932,13 +974,19 @@ export default function App() {
               <ul className="space-y-2 font-mono text-[10px] text-[#5d5f5f] font-semibold uppercase tracking-wider">
                 <li>
                   <a
-                    href="https://filmfreeway.com/FutureRealityAIFilmFestival?pending=true"
+                    href="https://luma.com/8pqcqqu0"
                     target="_blank"
+                    rel="noreferrer"
                     referrerPolicy="no-referrer"
                     className="hover:text-brand-accent transition-colors cursor-pointer text-left focus:outline-hidden block"
                   >
-                    Submit Film
+                    Purchase Early Bird Ticket
                   </a>
+                </li>
+                <li>
+                  <button onClick={openJury} className="hover:text-brand-accent transition-colors cursor-pointer text-left focus:outline-hidden">
+                    Jury
+                  </button>
                 </li>
                 <li>
                   <button onClick={() => setActiveModal("partner")} className="hover:text-brand-accent transition-colors cursor-pointer text-left focus:outline-hidden">

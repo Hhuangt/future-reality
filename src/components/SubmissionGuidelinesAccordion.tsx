@@ -125,12 +125,13 @@ export default function SubmissionGuidelinesAccordion() {
 
           <div className="pt-2">
             <a
-              href="https://filmfreeway.com/FutureRealityAIFilmFestival?pending=true"
+              href="https://luma.com/8pqcqqu0"
               target="_blank"
+              rel="noreferrer"
               referrerPolicy="no-referrer"
               className="inline-flex items-center gap-2 font-mono text-xs font-bold tracking-wider text-white bg-brand-dark hover:bg-brand-accent px-5 py-2.5 transition-colors uppercase cursor-pointer"
             >
-              <span>SUBMIT ON FILMFREEWAY</span>
+              <span>Purchase Early Bird Ticket</span>
               <span className="material-symbols-outlined text-sm">arrow_right_alt</span>
             </a>
           </div>
