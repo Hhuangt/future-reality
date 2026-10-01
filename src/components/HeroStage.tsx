@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { HxrLogo, SohoLogo } from "./CollaboratorLogos";
 import HeroHud from "./HeroHud";
+import { assetUrl } from "../lib/assetUrl";
 import { buttonPrimary, buttonSecondary, EASE_OUT } from "./ui";
 
 type HeroStageProps = {
@@ -88,7 +89,7 @@ export default function HeroStage({ onOpenJury, openingActive = false }: HeroSta
             <span className="sr-only">Future Reality</span>
             <motion.img
               className="poster-title-line"
-              src="/poster/future.png"
+              src={assetUrl("/poster/future.png")}
               alt=""
               width={2700}
               height={1300}
@@ -101,7 +102,7 @@ export default function HeroStage({ onOpenJury, openingActive = false }: HeroSta
             />
             <motion.img
               className="poster-title-line"
-              src="/poster/reality.png"
+              src={assetUrl("/poster/reality.png")}
               alt=""
               width={2700}
               height={1300}

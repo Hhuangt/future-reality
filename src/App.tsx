@@ -14,6 +14,7 @@ import CursorSpotlight from "./components/CursorSpotlight";
 import OpeningSpotlight from "./components/OpeningSpotlight";
 import HomeAtmosphere from "./components/BackgroundTechLayer";
 import EndingNavigation from "./components/EndingNavigation";
+import { assetUrl } from "./lib/assetUrl";
 import { SectionHeader, buttonPrimary, buttonSecondary, buttonText, MaskLine, ScrollWords, reveal } from "./components/ui";
 
 const TICKETS_URL = "https://luma.com/8pqcqqu0";
@@ -400,7 +401,7 @@ export default function App() {
                   viewport={{ once: true, amount: 0.2 }}
                 >
                   <motion.img
-                    src="/poster/cinema-red.jpg"
+                    src={assetUrl("/poster/cinema-red.jpg")}
                     alt="A red-lit cinema auditorium facing the screen"
                     className="h-full w-full object-cover"
                     variants={{ hidden: { scale: 1.08 }, shown: { scale: 1 } }}
@@ -452,7 +453,7 @@ export default function App() {
                   <div
                     className="absolute inset-0 pointer-events-none opacity-30"
                     style={{
-                      backgroundImage: "linear-gradient(90deg, rgba(9,9,8,0.08), rgba(9,9,8,0.86) 76%), url('/poster/nyc-sunset.jpg')",
+                      backgroundImage: `linear-gradient(90deg, rgba(9,9,8,0.08), rgba(9,9,8,0.86) 76%), url('${assetUrl("/poster/nyc-sunset.jpg")}')`,
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                     }}

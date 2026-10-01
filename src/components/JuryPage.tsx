@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { grandJury, preliminaryJury } from "../juryData";
 import { JuryMember } from "../types";
 import { motion } from "motion/react";
+import { assetUrl } from "../lib/assetUrl";
 import { MaskLine, reveal } from "./ui";
 
 type JurySectionId = "grand" | "preliminary";
@@ -26,7 +27,7 @@ function Portrait({ member }: { member: JuryMember }) {
     <div className="relative mx-auto h-36 w-36 md:h-40 md:w-40 rounded-full overflow-hidden ring-1 ring-brand-copper/50 ring-offset-4 ring-offset-transparent bg-brand-surface-2">
       {member.photo ? (
         <img
-          src={member.photo}
+          src={assetUrl(member.photo)}
           alt={`${member.name} headshot`}
           className="h-full w-full object-cover object-top"
           loading="lazy"

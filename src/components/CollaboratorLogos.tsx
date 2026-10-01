@@ -1,4 +1,5 @@
 import React from "react";
+import { assetUrl } from "../lib/assetUrl";
 
 interface LogoProps {
   className?: string;
@@ -42,7 +43,7 @@ export const SohoLogo: React.FC<LogoProps> = ({ className = "", variant = "dark"
 
   return (
     <img
-      src="/logos/soho.png"
+      src={assetUrl("/logos/soho.png")}
       alt="SOHO International Film Festival"
       width={2300}
       height={964}
@@ -58,7 +59,7 @@ export const HxrLogo: React.FC<LogoProps> = ({ className = "", variant = "dark",
 
   return (
     <img
-      src="/logos/hxr.png"
+      src={assetUrl("/logos/hxr.png")}
       alt="Harvard XR"
       width={1320}
       height={832}
@@ -80,7 +81,7 @@ export const DeoVrLogo: React.FC<LogoProps> = ({ className = "", size = "md" }) 
       aria-label="DeoVR"
     >
       <img
-        src="/logos/deovr.jpg"
+        src={assetUrl("/logos/deovr.jpg")}
         alt="DeoVR"
         width={1024}
         height={352}

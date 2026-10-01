@@ -1,4 +1,5 @@
 import { globalNetworkData } from "../data";
+import { assetUrl } from "../lib/assetUrl";
 
 const railImages = [
   { src: "/poster/nyc-sunset.jpg", alt: "New York skyline at sunset" },
@@ -19,7 +20,7 @@ export default function ImageScrollRail() {
         <div className="image-scroll-rail">
           {railImages.map((image) => (
             <figure key={image.src} className="image-scroll-slide">
-              <img src={image.src} alt={image.alt} loading="lazy" className="image-scroll-photo" referrerPolicy="no-referrer" />
+              <img src={assetUrl(image.src)} alt={image.alt} loading="lazy" className="image-scroll-photo" referrerPolicy="no-referrer" />
               <figcaption className="image-scroll-caption">{image.alt}</figcaption>
             </figure>
           ))}

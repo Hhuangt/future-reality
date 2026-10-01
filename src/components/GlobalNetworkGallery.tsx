@@ -3,6 +3,7 @@ import { GlobalNetworkItem } from "../types";
 import { globalNetworkData } from "../data";
 import Modal from "./Modal";
 import { motion } from "motion/react";
+import { assetUrl } from "../lib/assetUrl";
 import { EASE_OUT, SectionHeader, reveal } from "./ui";
 
 const groups = [
@@ -48,7 +49,7 @@ function Frame({ item, index, delay, onOpen }: { item: GlobalNetworkItem; index:
             <motion.img
               variants={{ hidden: { scale: 1.18 }, shown: { scale: 1 } }}
               transition={{ duration: 1.6, ease: EASE_OUT, delay }}
-              src={item.imageUrl}
+              src={assetUrl(item.imageUrl)}
               alt={item.title}
               loading="lazy"
               className="h-full w-full object-cover"
@@ -119,7 +120,7 @@ export const GlobalNetworkGallery: React.FC = () => {
           <div className="space-y-6">
             {selected.imageUrl && (
               <div className="aspect-[16/9] overflow-hidden border border-brand-line bg-black">
-                <img src={selected.imageUrl} alt={selected.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                <img src={assetUrl(selected.imageUrl)} alt={selected.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
               </div>
             )}
             <p className="font-serif text-lg text-brand-cream leading-relaxed">{selected.subtitle}</p>
