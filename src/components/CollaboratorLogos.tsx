@@ -6,173 +6,87 @@ interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";
 }
 
-/**
- * SOHO International Film Festival Logo
- * Exact vector replication of official SoHo International Film Festival typography
- */
-export const SohoLogo: React.FC<LogoProps> = ({
-  className = "",
-  variant = "dark",
-  size = "md"
-}) => {
-  const sizeClasses = {
-    sm: "h-12 sm:h-14 md:h-16 w-auto",
-    md: "h-16 sm:h-20 md:h-24 w-auto",
-    lg: "h-24 sm:h-28 md:h-32 w-auto",
-    xl: "h-32 sm:h-36 md:h-44 w-auto"
-  }[size];
+const logoSizeClasses = {
+  soho: {
+    sm: "h-12 sm:h-14 md:h-16",
+    md: "h-16 sm:h-20 md:h-24",
+    lg: "h-24 sm:h-28 md:h-32",
+    xl: "h-32 sm:h-36 md:h-44",
+  },
+  hxr: {
+    sm: "h-9 sm:h-11 md:h-12",
+    md: "h-12 sm:h-14 md:h-16",
+    lg: "h-16 sm:h-20 md:h-24",
+    xl: "h-20 sm:h-24 md:h-28",
+  },
+  deovr: {
+    sm: "h-8 sm:h-9",
+    md: "h-10 sm:h-11",
+    lg: "h-14 sm:h-16",
+    xl: "h-16 sm:h-20",
+  },
+} as const;
 
-  const isDark = variant === "dark" || variant === "color";
-  const strokeColor = isDark ? "#FFFFFF" : variant === "monochrome" ? "currentColor" : "#0A0A0A";
+const DEOVR_URL = "https://deovr.com";
+
+function partnerLogoTone(variant: NonNullable<LogoProps["variant"]>) {
+  if (variant === "light") return "invert brightness-0";
+  if (variant === "monochrome") return "brightness-0 invert opacity-90";
+  return "";
+}
+
+/** Official SOHO International Film Festival wordmark (PNG from brand assets). */
+export const SohoLogo: React.FC<LogoProps> = ({ className = "", variant = "dark", size = "md" }) => {
+  const sizeClass = logoSizeClasses.soho[size];
+  const tone = partnerLogoTone(variant as NonNullable<LogoProps["variant"]>);
 
   return (
-    <div className={`flex flex-col items-center justify-center select-none ${className}`}>
-      <svg
-        viewBox="0 0 360 230"
-        className={`${sizeClasses} max-w-full drop-shadow-sm transition-transform duration-300 hover:scale-[1.02]`}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="SOHO International Film Festival Logo"
-      >
-        {/* SOHO Top Wordmark */}
-        <g stroke={strokeColor} strokeWidth="4.2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-          {/* S */}
-          <path
-            d="M 82 38 C 82 23, 68 14, 51 14 C 33 14, 20 23, 20 38 C 20 54, 38 60, 58 66 C 76 71, 84 81, 84 96 C 84 112, 70 122, 51 122 C 30 122, 18 110, 18 94"
-          />
-
-          {/* O (First) */}
-          <ellipse
-            cx="138"
-            cy="68"
-            rx="36"
-            ry="54"
-          />
-
-          {/* H */}
-          <path
-            d="M 194 14 V 122 M 194 68 H 246 M 246 14 V 122"
-          />
-
-          {/* O (Second) */}
-          <ellipse
-            cx="302"
-            cy="68"
-            rx="36"
-            ry="54"
-          />
-        </g>
-
-        {/* Line 2: INTERNATIONAL */}
-        <g stroke={strokeColor} strokeWidth="3" fill="none" strokeLinecap="square" strokeLinejoin="miter">
-          {/* I */}
-          <path d="M 22 136 V 172" />
-          {/* N */}
-          <path d="M 37 172 V 136 L 56 172 V 136" />
-          {/* T */}
-          <path d="M 66 136 H 86 M 76 136 V 172" />
-          {/* E */}
-          <path d="M 112 136 H 96 V 172 H 112 M 96 154 H 108" />
-          {/* R */}
-          <path d="M 122 172 V 136 H 134 C 140 136 143 140 143 146 C 143 152 140 156 134 156 H 122 M 133 156 L 144 172" />
-          {/* N */}
-          <path d="M 154 172 V 136 L 173 172 V 136" />
-          {/* A */}
-          <path d="M 183 172 L 193 136 L 203 172 M 186 161 H 200" />
-          {/* T */}
-          <path d="M 213 136 H 233 M 223 136 V 172" />
-          {/* I */}
-          <path d="M 243 136 V 172" />
-          {/* O */}
-          <ellipse cx="262" cy="154" rx="9" ry="18" />
-          {/* N */}
-          <path d="M 281 172 V 136 L 300 172 V 136" />
-          {/* A */}
-          <path d="M 310 172 L 320 136 L 330 172 M 313 161 H 327" />
-          {/* L */}
-          <path d="M 339 136 V 172 H 348" />
-        </g>
-
-        {/* Line 3: FILM FESTIVAL */}
-        <g stroke={strokeColor} strokeWidth="3" fill="none" strokeLinecap="square" strokeLinejoin="miter">
-          {/* F */}
-          <path d="M 38 184 H 22 V 220 M 22 201 H 35" />
-          {/* I */}
-          <path d="M 48 184 V 220" />
-          {/* L */}
-          <path d="M 58 184 V 220 H 74" />
-          {/* M */}
-          <path d="M 84 220 V 184 L 97 210 L 110 184 V 220" />
-
-          {/* F */}
-          <path d="M 152 184 H 136 V 220 M 136 201 H 149" />
-          {/* E */}
-          <path d="M 174 184 H 160 V 220 H 174 M 160 201 H 171" />
-          {/* S */}
-          <path d="M 198 191 C 198 185 192 184 187 184 C 182 184 179 187 179 192 C 179 201 198 198 198 209 C 198 217 192 220 186 220 C 180 220 178 214 178 214" />
-          {/* T */}
-          <path d="M 208 184 H 228 M 218 184 V 220" />
-          {/* I */}
-          <path d="M 238 184 V 220" />
-          {/* V */}
-          <path d="M 248 184 L 259 220 L 270 184" />
-          {/* A */}
-          <path d="M 280 220 L 290 184 L 300 220 M 283 209 H 297" />
-          {/* L */}
-          <path d="M 310 184 V 220 H 326" />
-        </g>
-      </svg>
-    </div>
+    <img
+      src="/logos/soho.png"
+      alt="SOHO International Film Festival"
+      width={2300}
+      height={964}
+      className={`block w-auto max-w-full object-contain object-left transition-transform duration-300 hover:scale-[1.02] ${sizeClass} ${tone} ${className}`}
+    />
   );
 };
 
-/**
- * HXR Logo
- * Crisp black and white vector rendering of the official HXR interlocking block typography
- */
-export const HxrLogo: React.FC<LogoProps> = ({
-  className = "",
-  variant = "dark",
-  size = "md"
-}) => {
-  const sizeClasses = {
-    sm: "h-9 sm:h-11 md:h-12 w-auto",
-    md: "h-12 sm:h-15 md:h-18 w-auto",
-    lg: "h-18 sm:h-22 md:h-26 w-auto",
-    xl: "h-26 sm:h-30 md:h-34 w-auto"
-  }[size];
-
-  const isDark = variant === "dark" || variant === "color";
-  const fillColor = isDark ? "#FFFFFF" : variant === "monochrome" ? "currentColor" : "#0A0A0A";
+/** Official HXR wordmark (PNG from brand assets). */
+export const HxrLogo: React.FC<LogoProps> = ({ className = "", variant = "dark", size = "md" }) => {
+  const sizeClass = logoSizeClasses.hxr[size];
+  const tone = partnerLogoTone(variant as NonNullable<LogoProps["variant"]>);
 
   return (
-    <div className={`flex items-center justify-center select-none ${className}`}>
-      <svg
-        viewBox="0 0 310 148"
-        className={`${sizeClasses} max-w-full drop-shadow-sm transition-transform duration-300 hover:scale-[1.02]`}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="HXR Logo"
-      >
-        <g fill={fillColor}>
-          {/* H */}
-          <rect x="0" y="0" width="44" height="148" />
-          <rect x="44" y="56" width="44" height="36" />
+    <img
+      src="/logos/hxr.png"
+      alt="Harvard XR"
+      width={1320}
+      height={832}
+      className={`block w-auto max-w-full object-contain object-left transition-transform duration-300 hover:scale-[1.02] ${sizeClass} ${tone} ${className}`}
+    />
+  );
+};
 
-          {/* X */}
-          {/* Top-left to center-right */}
-          <polygon points="88,0 132,0 220,148 176,148" />
-          {/* Top-right to center-left */}
-          <polygon points="176,0 220,0 132,148 88,148" />
+/** DeoVR — immersive partner wordmark. */
+export const DeoVrLogo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
+  const sizeClass = logoSizeClasses.deovr[size];
 
-          {/* R */}
-          {/* R top outer curve and bowl */}
-          <path
-            d="M 176 0 H 252 C 286 0 308 22 308 56 C 308 78 296 94 274 100 L 308 148 H 262 L 230 102 H 220 V 148 H 176 V 0 Z M 220 36 V 66 H 250 C 262 66 268 58 268 51 C 268 44 262 36 250 36 H 220 Z"
-          />
-        </g>
-      </svg>
-    </div>
+  return (
+    <a
+      href={DEOVR_URL}
+      target="_blank"
+      rel="noreferrer"
+      className={`inline-block transition-transform duration-300 hover:scale-[1.02] ${className}`}
+      aria-label="DeoVR"
+    >
+      <img
+        src="/logos/deovr.jpg"
+        alt="DeoVR"
+        width={1024}
+        height={352}
+        className={`block w-auto max-w-full object-contain object-left ${sizeClass}`}
+      />
+    </a>
   );
 };
 
@@ -391,15 +305,15 @@ export const CollaboratorsShowcase: React.FC<{
 }) => {
   if (layout === "hero-badge") {
     return (
-      <div className={`border border-brand-dark/15 bg-neutral-50/90 p-4 sm:p-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] ${className}`}>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-brand-dark/10">
+      <div className={`border border-brand-line/15 bg-brand-surface/90 p-4 sm:p-5 shadow-[3px_3px_0px_0px_rgba(242,211,182,0.16)] ${className}`}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-brand-line/10">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-brand-accent animate-pulse" />
-            <span className="font-mono text-[10px] font-bold text-brand-dark uppercase tracking-widest">
+            <span className="font-mono text-[10px] font-bold text-brand-ink uppercase tracking-widest">
               OFFICIAL ALLIANCE COLLABORATORS
             </span>
           </div>
-          <span className="font-mono text-[9px] text-[#5d5f5f] uppercase tracking-wider">
+          <span className="font-mono text-[9px] text-brand-muted uppercase tracking-wider">
             NYC × GLOBAL 2026/27
           </span>
         </div>
@@ -416,7 +330,7 @@ export const CollaboratorsShowcase: React.FC<{
           </div>
 
           {/* Dreama */}
-          <div className="p-3 py-4 bg-white border border-brand-dark/20 rounded-xs flex items-center justify-center text-center group hover:border-brand-accent transition-colors">
+          <div className="p-3 py-4 bg-brand-surface border border-brand-line/20 rounded-xs flex items-center justify-center text-center group hover:border-brand-accent transition-colors">
             <DreamaLogo size="sm" variant="color" className="h-12 sm:h-14" />
           </div>
         </div>
@@ -426,13 +340,13 @@ export const CollaboratorsShowcase: React.FC<{
 
   if (layout === "ribbon") {
     return (
-      <div className={`w-full bg-brand-dark text-white border-y border-brand-dark py-6 px-6 md:px-12 ${className}`}>
+      <div className={`w-full bg-brand-dark text-white border-y border-brand-line py-6 px-6 md:px-12 ${className}`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <span className="font-mono text-[9px] uppercase tracking-widest text-brand-accent font-bold">
               ESTABLISHED ALLIANCE
             </span>
-            <h4 className="font-display font-black uppercase text-sm tracking-wider text-[#F2F1ED]">
+            <h4 className="font-display font-black uppercase text-sm tracking-wider text-brand-ink">
               FOUNDING COLLABORATORS & PARTNERS
             </h4>
           </div>
@@ -460,7 +374,7 @@ export const CollaboratorsShowcase: React.FC<{
     <div className={`space-y-8 ${className}`}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Card 1: SOHO INTERNATIONAL FILM FESTIVAL */}
-        <div className="border-[1.5px] border-brand-dark bg-brand-dark text-white p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:shadow-[6px_6px_0px_0px_rgba(230,57,70,0.8)] transition-all duration-200 group">
+        <div className="border-[1.5px] border-brand-line bg-brand-dark text-white p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(242,211,182,0.16)] hover:shadow-[6px_6px_0px_0px_rgba(224,74,59,0.8)] transition-all duration-200 group">
           <div className="space-y-6">
             <div className="flex justify-between items-center border-b border-white/10 pb-3">
               <span className="font-mono text-[9px] bg-brand-accent text-white px-2 py-0.5 font-bold uppercase tracking-widest">
@@ -490,10 +404,10 @@ export const CollaboratorsShowcase: React.FC<{
         </div>
 
         {/* Card 2: HXR */}
-        <div className="border-[1.5px] border-brand-dark bg-[#0A0A0A] text-white p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.6)] transition-all duration-200 group">
+        <div className="border-[1.5px] border-brand-line bg-[#0A0A0A] text-white p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(242,211,182,0.16)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.6)] transition-all duration-200 group">
           <div className="space-y-5">
             <div className="flex justify-between items-center border-b border-white/10 pb-3">
-              <span className="font-mono text-[9px] bg-white text-black px-2 py-0.5 font-bold uppercase tracking-widest">
+              <span className="font-mono text-[9px] bg-brand-surface text-brand-ink px-2 py-0.5 font-bold uppercase tracking-widest">
                 HARVARD GSD XR+ ALLIANCE
               </span>
               <span className="font-mono text-[9px] text-zinc-400 uppercase">CAMBRIDGE // 2026</span>
@@ -520,21 +434,21 @@ export const CollaboratorsShowcase: React.FC<{
         </div>
 
         {/* Card 3: DREAMA */}
-        <div className="border-[1.5px] border-brand-dark bg-neutral-50 text-brand-dark p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:shadow-[6px_6px_0px_0px_rgba(6,182,212,0.8)] transition-all duration-200 group">
+        <div className="border-[1.5px] border-brand-line bg-brand-surface text-brand-ink p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(242,211,182,0.16)] hover:shadow-[6px_6px_0px_0px_rgba(6,182,212,0.8)] transition-all duration-200 group">
           <div className="space-y-5">
-            <div className="flex justify-between items-center border-b border-brand-dark/10 pb-3">
+            <div className="flex justify-between items-center border-b border-brand-line/10 pb-3">
               <span className="font-mono text-[9px] bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 py-0.5 font-bold uppercase tracking-widest">
                 EXPERIENCE ENGINE
               </span>
-              <span className="font-mono text-[9px] text-[#5d5f5f] uppercase">BIO-SENSORY LABS</span>
+              <span className="font-mono text-[9px] text-brand-muted uppercase">BIO-SENSORY LABS</span>
             </div>
 
-            <div className="py-4 flex justify-center items-center min-h-[140px] bg-white border border-brand-dark/10 p-4 rounded-xs shadow-inner">
+            <div className="py-4 flex justify-center items-center min-h-[140px] bg-brand-surface border border-brand-line/10 p-4 rounded-xs shadow-inner">
               <DreamaLogo size="md" variant="color" className="h-20" />
             </div>
 
             <div className="space-y-1.5">
-              <h4 className="font-display font-extrabold uppercase text-lg text-brand-dark group-hover:text-blue-600 transition-colors">
+              <h4 className="font-display font-extrabold uppercase text-lg text-brand-ink group-hover:text-blue-600 transition-colors">
                 DREAMA
               </h4>
               <p className="font-mono text-[10px] text-blue-600 uppercase font-bold tracking-wider">
@@ -543,9 +457,9 @@ export const CollaboratorsShowcase: React.FC<{
             </div>
           </div>
 
-          <div className="pt-5 border-t border-brand-dark/10 mt-5 flex items-center justify-between text-[#5d5f5f] font-mono text-[9px] uppercase">
+          <div className="pt-5 border-t border-brand-line/10 mt-5 flex items-center justify-between text-brand-muted font-mono text-[9px] uppercase">
             <span>IMMERSIVE LABS</span>
-            <span className="text-brand-dark font-bold group-hover:translate-x-1 transition-transform">EXPLORE →</span>
+            <span className="text-brand-ink font-bold group-hover:translate-x-1 transition-transform">EXPLORE →</span>
           </div>
         </div>
       </div>

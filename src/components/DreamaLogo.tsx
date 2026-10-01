@@ -173,19 +173,19 @@ export const DreamaLogo: React.FC<DreamaLogoProps> = ({
   if (variant === "badge") {
     return (
       <div
-        className={`inline-flex items-center gap-3 bg-white/95 border border-brand-dark/20 p-2.5 sm:p-3 shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] ${className}`}
+        className={`inline-flex items-center gap-3 bg-brand-surface border border-brand-line p-2.5 sm:p-3 ${className}`}
       >
         <div style={{ width: currentSize.icon, height: currentSize.icon }} className="shrink-0">
           {LogoMark}
         </div>
         <div className="flex flex-col">
-          <div className="flex items-center gap-1.5 font-display font-black tracking-[0.25em] text-brand-dark text-xs sm:text-sm">
+          <div className="flex items-center gap-1.5 font-display font-black tracking-[0.25em] text-brand-ink text-xs sm:text-sm">
             <span>D</span>
             <span>R</span>
             <span className="inline-flex flex-col justify-center gap-[2px] w-2.5">
-              <span className="h-[1.5px] w-full bg-brand-dark rounded-xs" />
-              <span className="h-[1.5px] w-full bg-brand-dark rounded-xs" />
-              <span className="h-[1.5px] w-full bg-brand-dark rounded-xs" />
+              <span className="h-[1.5px] w-full bg-current rounded-xs" />
+              <span className="h-[1.5px] w-full bg-current rounded-xs" />
+              <span className="h-[1.5px] w-full bg-current rounded-xs" />
             </span>
             <span>Ʌ</span>
             <span>M</span>
@@ -211,14 +211,14 @@ export const DreamaLogo: React.FC<DreamaLogoProps> = ({
       </div>
 
       {/* Stylized Wordmark: D R E Ʌ M Ʌ */}
-      <div className="flex items-center justify-center gap-2 sm:gap-2.5 font-display font-black tracking-[0.3em] text-brand-dark">
+      <div className="flex items-center justify-center gap-2 sm:gap-2.5 font-display font-black tracking-[0.3em] text-brand-ink">
         <span className={`${currentSize.text} leading-none`}>D</span>
         <span className={`${currentSize.text} leading-none`}>R</span>
         {/* Custom 3-bar stylized E */}
         <span className="inline-flex flex-col justify-center gap-[2px] w-3 sm:w-3.5">
-          <span className="h-[2px] w-full bg-brand-dark rounded-xs" />
-          <span className="h-[2px] w-full bg-brand-dark rounded-xs" />
-          <span className="h-[2px] w-full bg-brand-dark rounded-xs" />
+          <span className="h-[2px] w-full bg-current rounded-xs" />
+          <span className="h-[2px] w-full bg-current rounded-xs" />
+          <span className="h-[2px] w-full bg-current rounded-xs" />
         </span>
         <span className={`${currentSize.text} leading-none`}>Ʌ</span>
         <span className={`${currentSize.text} leading-none`}>M</span>

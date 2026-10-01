@@ -186,7 +186,7 @@ export const festivalExperiences: FestivalExperience[] = [
   {
     id: "immersive_future_reality",
     title: "Immersive Future Reality",
-    description: "Spatial, holographic, and interactive installations combined with real-time, audience-driven generative cinema co-created with Dreama.",
+    description: "Spatial, holographic, and interactive installations combined with real-time, audience-driven generative cinema — presented with DeoVR.",
     icon: "vrpandemonium",
     tag: "SPATIAL & INTERACTIVE REALITY"
   },

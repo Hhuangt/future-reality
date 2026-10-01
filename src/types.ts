@@ -47,6 +47,7 @@ export interface JuryMember {
   organization?: string;
   bio?: string;
   initials: string;
+  photo?: string;
   website?: string;
 }
 

@@ -23,19 +23,19 @@ export default function SubmissionForm({ type, onSuccess, initialCategory }: Sub
     setFormError("");
 
     if (!name.trim()) {
-      setFormError("Name/Representative field is required.");
+      setFormError("Please add your name.");
       return;
     }
     if (!email.trim() || !email.includes("@")) {
-      setFormError("A valid email address is required.");
+      setFormError("Please add a valid email address.");
       return;
     }
     if (type !== "inquiry" && !title.trim() && type !== "partner") {
-      setFormError("Project/Pitch title is required.");
+      setFormError("Please add a project title.");
       return;
     }
     if (!message.trim()) {
-      setFormError("Description or message is required.");
+      setFormError("Please add a short message.");
       return;
     }
 
@@ -79,163 +79,81 @@ export default function SubmissionForm({ type, onSuccess, initialCategory }: Sub
     }, 800);
   };
 
+  const field =
+    "w-full bg-transparent border-b border-brand-line py-2.5 font-sans text-[15px] text-brand-ink placeholder:text-brand-muted/60 focus:outline-none focus:border-brand-amber transition-colors";
+  const labelCls = "label text-[10px] text-brand-muted mb-1.5";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" id={`form-${type}`}>
+    <form onSubmit={handleSubmit} className="space-y-7" id={`form-${type}`} noValidate>
       {formError && (
-        <div className="border border-red-500 text-red-600 p-3 bg-red-50 text-xs font-sans tracking-wide">
+        <p role="alert" className="border-l-2 border-brand-accent pl-3 font-sans text-sm text-brand-cream">
           {formError}
-        </div>
+        </p>
       )}
 
-      {/* Grid Inputs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Name Fields */}
-        <div className="flex flex-col">
-          <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-            {type === "partner" ? "YOUR NAME / REPRESENTATIVE" : "FULL NAME"}
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="e.g. Rachel Sterling"
-            className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent transition-colors"
-            required
-          />
-        </div>
-
-        {/* Email Fields */}
-        <div className="flex flex-col">
-          <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-            EMAIL ADDRESS
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="e.g. connect@domain.com"
-            className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent transition-colors"
-            required
-          />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+        <label className="flex flex-col">
+          <span className={labelCls}>{type === "partner" ? "Your name" : "Full name"}</span>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className={field} autoComplete="name" required />
+        </label>
+        <label className="flex flex-col">
+          <span className={labelCls}>Email</span>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={field} autoComplete="email" required />
+        </label>
       </div>
 
-      <div className="space-y-6 mt-6">
-        {/* Organization for Partners */}
-        {type === "partner" && (
-          <div className="flex flex-col">
-            <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-              ORGANIZATION / INSTITUTION NAME
-            </label>
-            <input
-              type="text"
-              value={organization}
-              onChange={(e) => setOrganization(e.target.value)}
-              placeholder="e.g. Museum of Algorithmic Arts"
-              className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent transition-colors"
-            />
-          </div>
-        )}
+      {type === "partner" && (
+        <label className="flex flex-col">
+          <span className={labelCls}>Organization</span>
+          <input type="text" value={organization} onChange={(e) => setOrganization(e.target.value)} className={field} autoComplete="organization" />
+        </label>
+      )}
 
-        {/* Project Title for Work and Open Call */}
-        {(type === "work" || type === "opencall") && (
-          <div className="flex flex-col">
-            <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-              PROJECT / ARTWORK TITLE
-            </label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g. Synaptic Echoes v2"
-              className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent transition-colors"
-              required
-            />
-          </div>
-        )}
+      {(type === "work" || type === "opencall") && (
+        <label className="flex flex-col">
+          <span className={labelCls}>Project title</span>
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={field} required />
+        </label>
+      )}
 
-        {/* Category Selector */}
-        {type === "opencall" && (
-          <div className="flex flex-col">
-            <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-              PROPOSED CATEGORY
-            </label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden font-sans text-sm bg-brand-bg appearance-none cursor-pointer focus:border-brand-accent transition-colors"
-              required
-            >
-              <option value="">Select an Open Call Category</option>
-              <option value="AI Films">AI Films</option>
-              <option value="Hybrid Narratives">Hybrid Narratives</option>
-              <option value="Immersive Experiences">Immersive Experiences</option>
-              <option value="Experimental Storytelling">Experimental Storytelling</option>
-            </select>
-          </div>
-        )}
+      {type === "opencall" && (
+        <label className="flex flex-col">
+          <span className={labelCls}>Category</span>
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className={`${field} bg-brand-surface cursor-pointer`} required>
+            <option value="">Select a category</option>
+            <option value="AI Films">AI Films</option>
+            <option value="Hybrid Narratives">Hybrid Narratives</option>
+            <option value="Immersive Experiences">Immersive Experiences</option>
+            <option value="Experimental Storytelling">Experimental Storytelling</option>
+          </select>
+        </label>
+      )}
 
-        {/* Project URL */}
-        {(type === "work" || type === "opencall") && (
-          <div className="flex flex-col">
-            <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-              PORTFOLIO, DRAFT, OR CODE REPOSITORIES LINK (OPTIONAL)
-            </label>
-            <input
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="e.g. https://github.com/creators/project"
-              className="border-b border-brand-dark text-brand-dark py-2 focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent transition-colors"
-            />
-          </div>
-        )}
+      {(type === "work" || type === "opencall") && (
+        <label className="flex flex-col">
+          <span className={labelCls}>Link (optional)</span>
+          <input type="url" value={url} onChange={(e) => setUrl(e.target.value)} className={field} />
+        </label>
+      )}
 
-        {/* Message / Decription Text */}
-        <div className="flex flex-col">
-          <label className="font-mono text-[10px] font-bold tracking-widest text-neutral-400 uppercase mb-1">
-            {type === "work"
-              ? "METHODOLOGY & CONCEPT STATEMENT"
-              : type === "partner"
-              ? "PARTNERSHIP VISION & INTEREST"
-              : type === "opencall"
-              ? "CONCEPT PITCH / TECHNICAL WORKFLOW DESCRIPTION"
-              : "YOUR INQUIRY MESSAGE"}
-          </label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={4}
-            placeholder={
-              type === "work"
-                ? "Describe the algorithms, training pipelines, and underlying systems used to translate your creative imagination."
-                : type === "partner"
-                ? "Explain how your brand, center, or foundation would like to collaborate with Future Reality."
-                : type === "opencall"
-                ? "Provide a clear abstract outlining your vision, required display hardware, and software platforms."
-                : "Type your message here..."
-            }
-            className="border border-brand-dark p-3 text-brand-dark focus:outline-hidden placeholder-[#c6c6c6] font-sans text-sm focus:border-brand-accent bg-transparent resize-none leading-relaxed transition-colors"
-            required
-          />
-        </div>
-      </div>
+      <label className="flex flex-col">
+        <span className={labelCls}>{type === "partner" ? "How would you like to collaborate?" : "Message"}</span>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={4}
+          className="w-full bg-transparent border border-brand-line p-3 font-sans text-[15px] text-brand-ink leading-relaxed focus:outline-none focus:border-brand-amber resize-none transition-colors"
+          required
+        />
+      </label>
 
-      {/* Button */}
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 px-8 py-4 bg-brand-dark text-white hover:bg-brand-accent transition-all duration-200 uppercase font-mono font-bold text-[11px] tracking-widest flex items-center justify-center gap-2 w-full disabled:bg-neutral-600 disabled:cursor-not-allowed shadow-[3px_3px_0px_0px_rgba(230,57,70,0.5)] hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] cursor-pointer"
+        className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 bg-brand-accent text-brand-bg font-sans text-[12px] font-extrabold uppercase tracking-[0.2em] hover:bg-brand-accent-bright transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         id={`submit-btn-${type}`}
       >
-        {isSubmitting ? (
-          <>
-            <span className="animate-spin block h-3 w-3 border-2 border-white border-t-transparent"></span>
-            SUBMITTING TO REGISTRY...
-          </>
-        ) : (
-          "SUBMIT TO CENTRAL ARCHIVE"
-        )}
+        {isSubmitting ? "Sending…" : "Send"}
       </button>
     </form>
   );

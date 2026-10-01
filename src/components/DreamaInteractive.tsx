@@ -37,7 +37,7 @@ export default function DreamaInteractive() {
   }, [activeId]);
 
   return (
-    <div className="w-full bg-black text-white p-6 md:p-12 border-t border-brand-dark" id="dreama-interactive-console">
+    <div className="w-full bg-black text-white p-6 md:p-12 border-t border-brand-line" id="dreama-interactive-console">
       {/* Outer Banner */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 border-b border-neutral-800/80 pb-8">
         <div>
@@ -58,10 +58,10 @@ export default function DreamaInteractive() {
           </h3>
         </div>
         <div className="flex flex-col items-start md:items-end gap-3">
-          <div className="bg-white/95 text-brand-dark p-3 rounded-xs border border-white/20 shadow-md">
+          <div className="bg-brand-surface/95 text-brand-ink p-3 rounded-xs border border-white/20 shadow-md">
             <DreamaLogo size="sm" variant="full" />
           </div>
-          <div className="hidden lg:block max-w-xs text-neutral-400 font-sans text-xs leading-relaxed text-right">
+          <div className="hidden lg:block max-w-xs text-brand-muted font-sans text-xs leading-relaxed text-right">
             Neuro-translation telemetry arrays active across the viewing room.
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function DreamaInteractive() {
                 key={inst.id}
                 onClick={() => setActiveId(inst.id)}
                 className={`py-6 flex flex-col text-left transition-all duration-300 relative overflow-hidden group outline-hidden ${
-                  isActive ? "text-white pl-4" : "text-neutral-500 hover:text-neutral-300"
+                  isActive ? "text-white pl-4" : "text-brand-muted hover:text-neutral-300"
                 }`}
                 id={`install-node-${inst.id}`}
               >
@@ -88,13 +88,13 @@ export default function DreamaInteractive() {
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-accent" />
                 )}
                 
-                <span className="font-mono text-xs text-neutral-400 mb-2">
+                <span className="font-mono text-xs text-brand-muted mb-2">
                   NODE 0{inst.num}
                 </span>
                 <span className="font-display text-xl md:text-2xl font-bold uppercase tracking-tight">
                   {inst.title}
                 </span>
-                <span className="font-sans text-xs text-neutral-400 mt-1 opacity-80 group-hover:opacity-100 italic">
+                <span className="font-sans text-xs text-brand-muted mt-1 opacity-80 group-hover:opacity-100 italic">
                   {inst.tagline}
                 </span>
               </button>
@@ -123,7 +123,7 @@ export default function DreamaInteractive() {
                   <span className="h-2 w-2 rounded-full bg-brand-accent animate-pulse" />
                   <span className="font-mono text-[10px] text-brand-accent uppercase tracking-widest">STREAMING METRICS</span>
                 </div>
-                <div className="font-mono text-xs text-neutral-400">
+                <div className="font-mono text-xs text-brand-muted">
                   REF: {activeInstallation.id.toUpperCase()}_STAGE_V2
                 </div>
               </div>
@@ -134,12 +134,12 @@ export default function DreamaInteractive() {
                   <p className="font-serif text-lg leading-relaxed text-neutral-200">
                     {activeInstallation.description}
                   </p>
-                  <p className="font-sans text-sm text-neutral-400 leading-relaxed italic">
+                  <p className="font-sans text-sm text-brand-muted leading-relaxed italic">
                     {activeInstallation.narrative}
                   </p>
                 </div>
                 <div className="lg:col-span-5">
-                  <div className="aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] w-full bg-neutral-950 border border-neutral-800 overflow-hidden relative group shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]">
+                  <div className="aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] w-full bg-neutral-950 border border-neutral-800 overflow-hidden relative group shadow-[3px_3px_0px_0px_rgba(242,211,182,0.16)]">
                     <img
                       src={
                         activeInstallation.id === "theater"
@@ -154,7 +154,7 @@ export default function DreamaInteractive() {
                       className="w-full h-full object-cover grayscale brightness-90 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute bottom-2 left-2 bg-black/90 px-2 py-0.5 font-mono text-[8px] text-neutral-500 uppercase tracking-widest border border-neutral-800 pointer-events-none">
+                    <div className="absolute bottom-2 left-2 bg-black/90 px-2 py-0.5 font-mono text-[8px] text-brand-muted uppercase tracking-widest border border-neutral-800 pointer-events-none">
                       LIVE_SURVEILLANCE_CAMERA_0{activeInstallation.num}
                     </div>
                   </div>
@@ -173,7 +173,7 @@ export default function DreamaInteractive() {
                     <div className="flex items-center justify-between gap-4">
                       <span>BIO-FEEDBACK RATE</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-zinc-500">LOW</span>
+                        <span className="text-brand-muted">LOW</span>
                         <input
                           type="range"
                           min="10"
@@ -186,7 +186,7 @@ export default function DreamaInteractive() {
                       </div>
                     </div>
                      <div className="border-t border-neutral-800 pt-3 space-y-2">
-                      <div className="text-neutral-500 uppercase text-[10px] tracking-widest">LIVE SCRIPT SYNTHESIS FEED</div>
+                      <div className="text-brand-muted uppercase text-[10px] tracking-widest">LIVE SCRIPT SYNTHESIS FEED</div>
                       <div className="bg-neutral-900 p-3 text-white border-l-2 border-brand-accent min-h-[48px] flex items-center font-mono italic text-xs leading-relaxed">
                         {scriptLine}
                       </div>
@@ -212,7 +212,7 @@ export default function DreamaInteractive() {
                       </div>
                     </div>
                     <div className="border-t border-neutral-800 pt-3 flex flex-col gap-2">
-                      <div className="text-neutral-500 uppercase text-[10px] tracking-widest">HAPTIC SIMULATION PATTERN</div>
+                      <div className="text-brand-muted uppercase text-[10px] tracking-widest">HAPTIC SIMULATION PATTERN</div>
                       <div className="flex items-center gap-1.5 h-6">
                         {Array.from({ length: 16 }).map((_, i) => {
                           const height = Math.abs(Math.sin((i / 2) + (pulseRate / 3))) * 22;
@@ -231,7 +231,7 @@ export default function DreamaInteractive() {
 
                 {activeId === "archive" && (
                   <div className="space-y-3">
-                    <div className="text-neutral-500 uppercase text-[10px] tracking-widest">BROWSE ARCHIVE ARCHETYPES</div>
+                    <div className="text-brand-muted uppercase text-[10px] tracking-widest">BROWSE ARCHIVE ARCHETYPES</div>
                     <div className="flex flex-wrap gap-2 pt-1">
                       {[
                         { key: "falling", label: "03-A Falling Void", quote: "Continuous descent with no velocity limits." },
@@ -245,14 +245,14 @@ export default function DreamaInteractive() {
                           className={`px-3 py-1.5 border text-[10px] uppercase font-bold transition-all cursor-pointer ${
                             selectedArchetype === item.key
                               ? "bg-brand-accent text-white border-brand-accent"
-                              : "border-neutral-800 hover:border-brand-accent hover:text-white text-neutral-400"
+                              : "border-neutral-800 hover:border-brand-accent hover:text-white text-brand-muted"
                           }`}
                         >
                           {item.label}
                         </button>
                       ))}
                     </div>
-                    <div className="bg-neutral-900 p-3 italic text-xs border border-neutral-800 text-neutral-400">
+                    <div className="bg-neutral-900 p-3 italic text-xs border border-neutral-800 text-brand-muted">
                       {selectedArchetype === "falling" && "RETRIEVED: 'A sensation of losing solid horizons, accelerating into cold layers of carbon, until gravity folds back.'"}
                       {selectedArchetype === "flight" && "RETRIEVED: 'Tornado-shaped white stairs built of silk. Entering a room where static pressure equals floating density.'"}
                       {selectedArchetype === "water" && "RETRIEVED: 'A sunken library lined with copper plates. Silent water currents sliding papers across algae beds.'"}
@@ -277,13 +277,13 @@ export default function DreamaInteractive() {
                     </div>
                     <div className="border-t border-neutral-800 pt-3 grid grid-cols-2 gap-4">
                       <div>
-                        <div className="text-neutral-500 uppercase text-[9px] tracking-widest">HUMIDITY SYNCHRONIZER</div>
+                        <div className="text-brand-muted uppercase text-[9px] tracking-widest">HUMIDITY SYNCHRONIZER</div>
                         <div className="text-white text-sm font-bold mt-1">
                           {brainwave === "alpha" ? "42.5%" : brainwave === "theta" ? "55.0%" : "68.2%"}
                         </div>
                       </div>
                       <div>
-                        <div className="text-neutral-500 uppercase text-[9px] tracking-widest text-right">ACOUSTIC FREQ</div>
+                        <div className="text-brand-muted uppercase text-[9px] tracking-widest text-right">ACOUSTIC FREQ</div>
                         <div className="text-white text-sm font-bold mt-1 text-right">
                           {brainwave === "alpha" ? "12 Hz" : brainwave === "theta" ? "6 Hz" : "2 Hz"}
                         </div>
@@ -294,17 +294,17 @@ export default function DreamaInteractive() {
               </div>
 
               {/* Floor specification metrics footer */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-[11px] text-neutral-400 border-t border-neutral-800 pt-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-[11px] text-brand-muted border-t border-neutral-800 pt-4">
                 <div>
-                  <span className="block text-neutral-600 font-sans text-[9px] uppercase tracking-widest">TIMED SPACE ACCESS</span>
+                  <span className="block text-brand-muted font-sans text-[9px] uppercase tracking-widest">TIMED SPACE ACCESS</span>
                   <span className="text-white">{activeInstallation.duration}</span>
                 </div>
                 <div>
-                  <span className="block text-neutral-600 font-sans text-[9px] uppercase tracking-widest">CHAMBER FOOTPRINT</span>
+                  <span className="block text-brand-muted font-sans text-[9px] uppercase tracking-widest">CHAMBER FOOTPRINT</span>
                   <span className="text-white">{activeInstallation.spaceRequired}</span>
                 </div>
                 <div className="col-span-2 md:col-span-1">
-                  <span className="block text-neutral-600 font-sans text-[9px] uppercase tracking-widest">PRIMARY SPECTRA</span>
+                  <span className="block text-brand-muted font-sans text-[9px] uppercase tracking-widest">PRIMARY SPECTRA</span>
                   <span className="text-white text-xs block truncate" title={activeInstallation.technicalSpecs.join(', ')}>
                     {activeInstallation.technicalSpecs[0]}
                   </span>
