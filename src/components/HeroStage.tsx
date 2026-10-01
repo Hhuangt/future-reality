@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { HxrLogo, SohoLogo } from "./CollaboratorLogos";
-import TechFieldDecor from "./TechFieldDecor";
 import { buttonPrimary, buttonSecondary } from "./ui";
 
 type HeroStageProps = {
@@ -53,8 +52,7 @@ export default function HeroStage({ onOpenJury }: HeroStageProps) {
 
   return (
     <section ref={ref} id="hero-viewport" className="stage poster-stage relative w-full">
-      <TechFieldDecor className="z-[2] opacity-90" intensity={1} />
-
+      <div className="hero-deep-mask hero-deep-mask--home" aria-hidden="true" />
       <motion.div className="hero-frame" style={{ x: frameX, scale: posterScale }}>
         <motion.div className="hero-shell" style={{ y: contentY, opacity: contentOpacity }}>
           <h2 className="hero-title poster-title">

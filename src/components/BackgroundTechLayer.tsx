@@ -1,16 +1,19 @@
 import TechFieldDecor from "./TechFieldDecor";
 import CodeReadout from "./CodeReadout";
 
-/** Fixed ambience: HUD flanks, scanlines, grid, faint code — sits behind all pages. */
-export default function BackgroundTechLayer() {
+/** NYC backdrop + HUD/code flanks — fixed while scrolling the homepage. */
+export default function HomeAtmosphere() {
   return (
-    <div className="background-tech-layer" aria-hidden="true">
-      <div className="background-tech-layer__grid" />
-      <div className="background-tech-layer__scanlines scanlines" />
-      <div className="background-tech-layer__glyphs">
-        <CodeReadout variant="ambient" />
+    <>
+      <div className="home-city-flow__backdrop" aria-hidden="true" />
+      <div className="home-city-flow__tech" aria-hidden="true">
+        <div className="background-tech-layer__grid" />
+        <div className="background-tech-layer__scanlines scanlines" />
+        <div className="background-tech-layer__glyphs">
+          <CodeReadout variant="ambient" />
+        </div>
+        <TechFieldDecor intensity={0.88} />
       </div>
-      <TechFieldDecor intensity={0.82} />
-    </div>
+    </>
   );
 }

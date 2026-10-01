@@ -2,7 +2,6 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { grandJury, preliminaryJury } from "../juryData";
 import { JuryMember } from "../types";
 import { motion } from "motion/react";
-import TechFieldDecor from "./TechFieldDecor";
 import { MaskLine, reveal } from "./ui";
 
 type JurySectionId = "grand" | "preliminary";
@@ -187,18 +186,9 @@ export default function JuryPage() {
 
   return (
     <div id="jury-page">
-      <section className="relative overflow-hidden border-b border-brand-line">
-        <TechFieldDecor intensity={0.9} />
-        <div
-          className="absolute left-1/2 top-0 -translate-x-1/2 h-full w-[min(900px,150vw)] pointer-events-none"
-          style={{
-            clipPath: "polygon(44% 0, 56% 0, 100% 100%, 0 100%)",
-            background: "linear-gradient(to bottom, rgba(255,205,160,0.45), rgba(212,135,79,0.14) 60%, transparent)",
-            filter: "blur(14px)",
-          }}
-          aria-hidden="true"
-        />
-        <div className="relative max-w-7xl mx-auto px-6 md:px-16 pt-40 pb-20 text-center space-y-5">
+      <section className="relative overflow-hidden border-b border-brand-line jury-surface">
+        <div className="hero-deep-mask hero-deep-mask--jury" aria-hidden="true" />
+        <div className="relative z-[1] max-w-7xl mx-auto px-6 md:px-16 pt-40 pb-20 text-center space-y-5">
           <span className="font-serif text-sm font-semibold uppercase tracking-[0.2em] text-brand-cream">2026 Edition</span>
           <h2 className="font-display uppercase text-brand-ink text-[clamp(4rem,12vw,10rem)] leading-[0.88]">
             <MaskLine delay={0.1}>The Jury</MaskLine>
@@ -209,7 +199,7 @@ export default function JuryPage() {
         </div>
       </section>
 
-      <div className="sticky top-[68px] z-30 bg-brand-bg/90 backdrop-blur-md border-b border-brand-line">
+      <div className="sticky top-[68px] z-30 border-b border-brand-line bg-[rgba(9,9,8,0.72)] backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-16 flex gap-8" role="tablist" aria-label="Jump to jury section">
           {sections.map((item) => {
             const selected = item.id === activeSection;
@@ -233,9 +223,8 @@ export default function JuryPage() {
         </div>
       </div>
 
-      <div className="relative overflow-hidden border-t border-brand-line">
-        <TechFieldDecor intensity={0.68} />
-        <div className="relative z-[1] max-w-7xl mx-auto px-6 md:px-16 py-20 space-y-24">
+      <div className="relative overflow-hidden border-t border-brand-line jury-surface">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-20 space-y-24">
         {sections.map((section) => (
           <Fragment key={section.id}>
             <JurySection

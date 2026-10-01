@@ -97,26 +97,74 @@ body::-webkit-scrollbar {
   mix-blend-mode: soft-light;
 }
 
-.background-tech-layer {
+.home-city-flow__backdrop {
   position: fixed;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
+  background-color: var(--color-brand-bg);
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(237, 87, 56, 0.04) 0%,
+      transparent 42%,
+      rgba(212, 135, 79, 0.03) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(9, 9, 8, 0.66) 0%,
+      rgba(9, 9, 8, 0.84) 22%,
+      rgba(9, 9, 8, 0.91) 52%,
+      rgba(9, 9, 8, 0.95) 100%
+    ),
+    url("/poster/nyc-sunset.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.home-city-flow__tech {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
   overflow: hidden;
   pointer-events: none;
+}
+
+.home-city-flow__content {
+  position: relative;
+  z-index: 2;
 }
 
 .background-tech-layer__grid {
   position: absolute;
   inset: -1px;
-  opacity: 0.22;
+  opacity: 0.26;
   background-image:
     linear-gradient(rgba(237, 87, 56, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(237, 87, 56, 0.045) 1px, transparent 1px),
     linear-gradient(rgba(212, 135, 79, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212, 135, 79, 0.025) 1px, transparent 1px);
   background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, #000 0%, transparent 72%);
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, #000 0%, transparent 72%);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 12%,
+    transparent 30%,
+    transparent 70%,
+    #000 88%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 12%,
+    transparent 30%,
+    transparent 70%,
+    #000 88%,
+    #000 100%
+  );
 }
 
 .background-tech-layer__scanlines {
@@ -173,11 +221,11 @@ body::-webkit-scrollbar {
   100% { transform: translateX(2%); opacity: 0.35; }
 }
 
-.background-tech-layer > .tech-field,
+.home-city-flow__tech > .tech-field,
 .tech-field--global {
   position: absolute;
   inset: 0;
-  opacity: 0.78;
+  opacity: 0.82;
   -webkit-mask-image: linear-gradient(
     90deg,
     #000 0%,
@@ -374,8 +422,8 @@ body::-webkit-scrollbar {
     background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
   }
 
-  .background-tech-layer > .tech-field {
-    opacity: 0.65;
+  .home-city-flow__tech > .tech-field {
+    opacity: 0.7;
   }
 
   .code-ambient {
@@ -489,30 +537,11 @@ body::-webkit-scrollbar {
 .home-city-flow {
   position: relative;
   isolation: isolate;
-  background-color: var(--color-brand-bg);
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(237, 87, 56, 0.04) 0%,
-      transparent 42%,
-      rgba(212, 135, 79, 0.03) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(9, 9, 8, 0.66) 0%,
-      rgba(9, 9, 8, 0.84) 22%,
-      rgba(9, 9, 8, 0.91) 52%,
-      rgba(9, 9, 8, 0.95) 100%
-    ),
-    url("/poster/nyc-sunset.jpg");
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
-.home-city-flow > section:not(.poster-stage) {
-  background-color: rgba(9, 9, 8, 0.2);
+.home-city-flow__content > section:not(.poster-stage),
+.home-city-flow__content .jury-surface {
+  background-color: rgba(9, 9, 8, 0.12);
 }
 
 .poster-stage {
@@ -520,6 +549,33 @@ body::-webkit-scrollbar {
   min-height: 100svh;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 42%, rgba(111, 38, 27, 0.16), transparent 58%);
+}
+
+.hero-deep-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-deep-mask--home {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(9, 9, 8, 0.42) 0%,
+      rgba(9, 9, 8, 0.32) 42%,
+      rgba(9, 9, 8, 0.58) 100%
+    );
+}
+
+.hero-deep-mask--jury {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(9, 9, 8, 0.58) 0%,
+      rgba(9, 9, 8, 0.4) 52%,
+      rgba(9, 9, 8, 0.62) 100%
+    );
 }
 
 .poster-backdrop-stack {
@@ -543,6 +599,7 @@ body::-webkit-scrollbar {
 
 .hero-frame {
   position: relative;
+  z-index: 1;
   width: 100%;
 }
 
@@ -762,7 +819,7 @@ body::-webkit-scrollbar {
   background:
     linear-gradient(90deg, transparent 0 49.96%, rgba(221, 76, 53, 0.1) 50%, transparent 50.04%),
     linear-gradient(0deg, rgba(221, 76, 53, 0.025), transparent 70%),
-    rgba(16, 14, 13, 0.88);
+    rgba(16, 14, 13, 0.45);
 }
 
 .ai-process::before {

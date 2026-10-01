@@ -12,7 +12,8 @@ import FestivalLogo from "./components/FestivalLogo";
 import HeroStage from "./components/HeroStage";
 import CursorSpotlight from "./components/CursorSpotlight";
 import OpeningSpotlight from "./components/OpeningSpotlight";
-import BackgroundTechLayer from "./components/BackgroundTechLayer";
+import HomeAtmosphere from "./components/BackgroundTechLayer";
+import EndingNavigation from "./components/EndingNavigation";
 import { SectionHeader, buttonPrimary, buttonSecondary, buttonText, MaskLine, ScrollWords, reveal } from "./components/ui";
 
 const TICKETS_URL = "https://luma.com/8pqcqqu0";
@@ -198,7 +199,6 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
     <div className="film-grain min-h-screen overflow-x-hidden bg-brand-bg text-brand-ink font-sans antialiased relative">
-      <BackgroundTechLayer />
       <div className="relative z-[1]">
       <CursorSpotlight />
       {openingVisible && <OpeningSpotlight onComplete={completeOpening} />}
@@ -284,10 +284,13 @@ export default function App() {
       </AnimatePresence>
 
       <main className="overflow-x-hidden">
-        {activePage === "jury" ? (
-          <JuryPage />
-        ) : (
-          <div className="home-city-flow">
+        <div className="home-city-flow">
+          <HomeAtmosphere />
+          <div className="home-city-flow__content">
+            {activePage === "jury" ? (
+              <JuryPage />
+            ) : (
+              <>
             <HeroStage onOpenJury={openJury} />
             <EventEssentials />
             <AiProcessRail />
@@ -493,8 +496,15 @@ export default function App() {
                 </motion.div>
               </div>
             </section>
+              </>
+            )}
+            <EndingNavigation
+              page={activePage}
+              onGoHome={goHome}
+              onOpenJury={openJury}
+            />
           </div>
-        )}
+        </div>
       </main>
 
       {/* Footer */}
