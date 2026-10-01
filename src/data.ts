@@ -193,7 +193,7 @@ export const festivalExperiences: FestivalExperience[] = [
   {
     id: "film_screening",
     title: "Film Screening",
-    description: "Curated theatrical screenings of groundbreaking AI-native short films, generative cinema selections, and international competition nominees on the big screen at Regal Union Square.",
+    description: "Curated theatrical screenings of groundbreaking AI-native short films, generative cinema selections, and international competition nominees on the big screen at Village East by Angelika.",
     icon: "theaters",
     tag: "THEATRICAL SCREENINGS"
   }
@@ -292,7 +292,7 @@ export const globalNetworkData: GlobalNetworkItem[] = [
     id: "soho_16th_edition_premiere",
     title: "SOHO 16th Edition: Cinema Premiere & Keynote",
     subtitle: "Monumental Screening & Executive Panel in New York City",
-    location: "Regal Union Square, New York",
+    location: "Village East by Angelika, New York",
     city: "New York, NY",
     year: "16th Edition • Oct 7–13, 2025",
     host: "soho",
@@ -314,7 +314,7 @@ export const globalNetworkData: GlobalNetworkItem[] = [
     id: "soho_gala_step_repeat",
     title: "Broome Street Series: Shorts Program G",
     subtitle: "Official SOHO International Film Festival Curated Shorts Showcase",
-    location: "New York City • Regal Union Square",
+    location: "New York City • Village East by Angelika",
     city: "New York, NY",
     year: "Official Selection",
     host: "soho",
@@ -325,7 +325,7 @@ export const globalNetworkData: GlobalNetworkItem[] = [
       "Official Selection of the SOHO International Film Festival",
       "Featured shorts: TAPER, DIZZY, Catalogue of Noses, RED TEAM, millie, LIFESAVER",
       "Curated cinematic screenings celebrating diverse independent voices",
-      "Theatrical presentation at Regal Union Square, NYC"
+      "Theatrical presentation at Village East by Angelika, NYC"
     ],
     attendees: "Official Selection Filmmakers & Delegations",
     imageUrl: "/5.png",

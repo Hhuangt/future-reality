@@ -164,7 +164,7 @@ export default function HeroStage({ onOpenJury, openingActive = false }: HeroSta
             transition={{ duration: 0.85, delay: openingActive ? 0 : 0.55, ease: EASE_OUT }}
           >
             <p className="font-sans text-xs leading-5 text-brand-ink/85 md:text-sm sm:text-left">
-              Regal Union Square
+              Village East by Angelika
               <br />
               New York City
             </p>

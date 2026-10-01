@@ -53,7 +53,7 @@ export default function HeroHud() {
           ))}
         </ol>
         <span className="hero-hud__rule" />
-        <p className="hero-hud__meta">40.7359° N · 73.9903° W</p>
+        <p className="hero-hud__meta">40.7310° N · 73.9857° W</p>
       </div>
 
       <div className="hero-hud__side hero-hud__side--right">

@@ -42,7 +42,7 @@ const isJuryRoute = (hash: string) => hash === "#jury" || hash.startsWith("#jury
 function EventEssentials() {
   const facts = [
     ["Date", "October 25, 2026"],
-    ["Venue", "Regal Union Square"],
+    ["Venue", "Village East by Angelika"],
     ["Location", "New York City"],
   ] as const;
   return (
@@ -392,7 +392,7 @@ export default function App() {
                   reel="04"
                   label="Programme"
                   title="The festival experience"
-                  intro="Generative cinema, spatial storytelling, critical conversation, and theatrical screenings — AI moves from tool to medium for one night at Regal Union Square."
+                  intro="Generative cinema, spatial storytelling, critical conversation, and theatrical screenings — AI moves from tool to medium for one night at Village East by Angelika."
                 />
                 <motion.figure
                   className="relative aspect-[16/9] overflow-hidden border border-brand-line bg-brand-surface"
@@ -415,7 +415,7 @@ export default function App() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" aria-hidden="true" />
                   <figcaption className="absolute inset-x-5 bottom-4 z-20 flex items-end justify-between gap-4 md:inset-x-8 md:bottom-7">
-                    <span className="label text-[9px] text-brand-accent-bright">Theater 01 · Regal Union Square</span>
+                    <span className="label text-[9px] text-brand-accent-bright">Theater 01 · Village East by Angelika</span>
                     <span className="hidden font-serif text-sm italic text-brand-ink md:block">One night in New York</span>
                   </figcaption>
                 </motion.figure>
@@ -482,7 +482,7 @@ export default function App() {
                     <span className="hidden lg:block absolute -left-3 -bottom-3 h-6 w-6 rounded-full bg-brand-bg border border-brand-line" aria-hidden="true" />
                     {[
                       ["Date", "October 25, 2026"],
-                      ["Venue", "Regal Union Square"],
+                      ["Venue", "Village East by Angelika"],
                       ["City", "New York City"],
                     ].map(([k, v]) => (
                       <div key={k} className="space-y-1">
@@ -519,7 +519,7 @@ export default function App() {
                 Great Filmmaking · Bold Imagination · AI with Intention
               </p>
               <p className="font-sans text-xs leading-relaxed text-brand-muted/90">
-                October 25, 2026 · Regal Union Square, New York City
+                October 25, 2026 · Village East by Angelika, New York City
               </p>
             </div>
 

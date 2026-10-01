@@ -23,7 +23,7 @@ const rightFlank: { n: number; tokens: Token[] }[] = [
   { n: 4, tokens: [{ text: "lat", kind: "plain" }, { text: ": ", kind: "op" }, { text: "40.7359", kind: "num" }, { text: ";", kind: "op" }] },
   { n: 5, tokens: [{ text: "date", kind: "plain" }, { text: ": ", kind: "op" }, { text: '"2026-10-25"', kind: "str" }, { text: ";", kind: "op" }] },
   { n: 7, tokens: [{ text: "return", kind: "kw" }, { text: " ", kind: "plain" }, { text: "premiere", kind: "fn" }, { text: "();", kind: "op" }] },
-  { n: 9, tokens: [{ text: "// union_sq · oct_25", kind: "cmt" }] },
+  { n: 9, tokens: [{ text: "// village_east · oct_25", kind: "cmt" }] },
 ];
 
 const stripLines: Token[][] = [
@@ -35,7 +35,7 @@ const stripLines: Token[][] = [
 const ambientLines: string[] = [
   "render_pass · latent_diffusion · frame_24",
   "authorship: human · pipeline: generative_cinema",
-  "union_sq · regal · nyc · 40.7359,-73.9903",
+  "village_east · angelika · nyc · 40.7310,-73.9857",
   "future_reality · ai_film · premiere_2026",
   "const story = await direct(intent);",
   "model.load('cinema') · color_grade · sound_mix",
