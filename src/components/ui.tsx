@@ -75,7 +75,7 @@ type SectionHeaderProps = {
 export function SectionHeader({ reel, label, title, intro }: SectionHeaderProps) {
   const lines = Array.isArray(title) ? title : [title];
   return (
-    <header className="space-y-8">
+    <header className="space-y-8 text-left">
       <motion.div
         className="flex items-center gap-4"
         initial={{ opacity: 0 }}

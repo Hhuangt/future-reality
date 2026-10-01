@@ -1,15 +1,39 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { HxrLogo, SohoLogo } from "./CollaboratorLogos";
-import { buttonPrimary, buttonSecondary } from "./ui";
+import HeroHud from "./HeroHud";
+import { buttonPrimary, buttonSecondary, EASE_OUT } from "./ui";
 
 type HeroStageProps = {
   onOpenJury: () => void;
+  openingActive?: boolean;
+};
+
+const titleLineVariants = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+    scale: 1.16,
+    rotateX: 22,
+    filter: "blur(20px)",
+  },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    filter: "blur(0px)",
+    transition: {
+      delay: 0.12 + index * 0.32,
+      duration: 1.35,
+      ease: EASE_OUT,
+    },
+  }),
 };
 
 const MAX_TILT_DEG = 3;
 
-export default function HeroStage({ onOpenJury }: HeroStageProps) {
+export default function HeroStage({ onOpenJury, openingActive = false }: HeroStageProps) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -51,23 +75,18 @@ export default function HeroStage({ onOpenJury }: HeroStageProps) {
   }, []);
 
   return (
-    <section ref={ref} id="hero-viewport" className="stage poster-stage relative w-full">
+    <section
+      ref={ref}
+      id="hero-viewport"
+      className={`stage poster-stage relative w-full ${openingActive ? "is-opening" : ""}`}
+    >
       <div className="hero-deep-mask hero-deep-mask--home" aria-hidden="true" />
+      <HeroHud />
       <motion.div className="hero-frame" style={{ x: frameX, scale: posterScale }}>
         <motion.div className="hero-shell" style={{ y: contentY, opacity: contentOpacity }}>
-          <h2 className="hero-title poster-title">
+          <h2 className={`hero-title poster-title ${openingActive ? "poster-title--intro" : ""}`}>
             <span className="sr-only">Future Reality</span>
-            <div className="hero-title-meta w-full space-y-2 md:space-y-2.5">
-              <p className="text-center font-sans text-[11px] leading-5 text-brand-muted md:text-xs">
-                Great Filmmaking, Bold Imagination,{" "}
-                <strong className="text-brand-accent-bright">AI with Intention.</strong>
-              </p>
-              <div className="grid w-full grid-cols-2 gap-4 font-serif text-sm font-black text-brand-accent md:text-xl">
-                <span className="text-left">(OCTOBER 25)</span>
-                <span className="text-right">(2026)</span>
-              </div>
-            </div>
-            <img
+            <motion.img
               className="poster-title-line"
               src="/poster/future.png"
               alt=""
@@ -75,26 +94,51 @@ export default function HeroStage({ onOpenJury }: HeroStageProps) {
               height={1300}
               fetchPriority="high"
               decoding="async"
+              custom={0}
+              variants={titleLineVariants}
+              initial={openingActive && !reduced ? "hidden" : "visible"}
+              animate="visible"
             />
-            <img
+            <motion.img
               className="poster-title-line"
               src="/poster/reality.png"
               alt=""
               width={2700}
               height={1300}
               decoding="async"
+              custom={1}
+              variants={titleLineVariants}
+              initial={openingActive && !reduced ? "hidden" : "visible"}
+              animate="visible"
             />
           </h2>
 
-          <div className="hero-sub text-center">
-            <p className="font-serif text-[clamp(1.35rem,3.2vw,2.75rem)] font-black uppercase leading-none tracking-[-0.02em] text-brand-accent">
+          <motion.div
+            className="hero-sub -mt-4 md:-mt-6"
+            initial={false}
+            animate={{
+              opacity: openingActive && !reduced ? 0 : 1,
+              y: openingActive && !reduced ? 28 : 0,
+              filter: openingActive && !reduced ? "blur(8px)" : "blur(0px)",
+            }}
+            transition={{ duration: 0.95, delay: openingActive ? 0 : 0.2, ease: EASE_OUT }}
+          >
+            <p className="font-serif text-[clamp(1.85rem,4.35vw,3.75rem)] font-black uppercase leading-none tracking-[-0.02em] text-brand-accent">
               AI Film Festival
             </p>
             <p className="mt-2 font-sans text-xs uppercase tracking-[0.45em] text-brand-muted md:mt-3 md:text-sm md:tracking-[0.5em]">
               New York
             </p>
-          </div>
-          <div className="hero-cta flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
+          </motion.div>
+          <motion.div
+            className="hero-cta flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center"
+            initial={false}
+            animate={{
+              opacity: openingActive && !reduced ? 0 : 1,
+              y: openingActive && !reduced ? 20 : 0,
+            }}
+            transition={{ duration: 0.85, delay: openingActive ? 0 : 0.45, ease: EASE_OUT }}
+          >
             <a
               href="https://luma.com/8pqcqqu0"
               target="_blank"
@@ -107,15 +151,23 @@ export default function HeroStage({ onOpenJury }: HeroStageProps) {
             <button type="button" onClick={onOpenJury} className={`${buttonSecondary} w-full sm:w-auto`}>
               Meet the Jury
             </button>
-          </div>
+          </motion.div>
 
-          <div className="hero-foot flex flex-col gap-6 border-t border-brand-line/80 pt-8 sm:flex-row sm:items-end sm:justify-between">
-            <p className="font-sans text-xs leading-5 text-brand-ink/85 md:text-sm">
+          <motion.div
+            className="hero-foot flex flex-col gap-6 border-t border-brand-line/80 pt-8 sm:flex-row sm:items-end sm:justify-between"
+            initial={false}
+            animate={{
+              opacity: openingActive && !reduced ? 0 : 1,
+              y: openingActive && !reduced ? 16 : 0,
+            }}
+            transition={{ duration: 0.85, delay: openingActive ? 0 : 0.55, ease: EASE_OUT }}
+          >
+            <p className="font-sans text-xs leading-5 text-brand-ink/85 md:text-sm sm:text-left">
               Regal Union Square
               <br />
               New York City
             </p>
-            <div className="flex flex-wrap items-center gap-5 md:gap-7">
+            <div className="flex flex-wrap items-center justify-center gap-5 sm:justify-end md:gap-7">
               <a
                 href="https://sohofilmfest.com"
                 target="_blank"
@@ -129,7 +181,7 @@ export default function HeroStage({ onOpenJury }: HeroStageProps) {
                 <HxrLogo size="sm" variant="dark" className="!h-7 md:!h-8" />
               </a>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
       <div className="hero-scroll-cue" aria-hidden="true">

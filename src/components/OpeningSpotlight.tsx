@@ -1,12 +1,12 @@
 import { type PointerEvent, useCallback, useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 type OpeningSpotlightProps = {
   onComplete: () => void;
 };
 
-const AUTO_REVEAL_MS = 3000;
-const REVEAL_DURATION_MS = 1200;
+const AUTO_REVEAL_MS = 3200;
+const REVEAL_DURATION_MS = 1400;
 
 export default function OpeningSpotlight({ onComplete }: OpeningSpotlightProps) {
   const ref = useRef<HTMLButtonElement>(null);
@@ -34,7 +34,7 @@ export default function OpeningSpotlight({ onComplete }: OpeningSpotlightProps) 
     window.history.scrollRestoration = "manual";
     window.scrollTo({ top: 0, left: 0 });
 
-    const autoRevealTimer = window.setTimeout(reveal, AUTO_REVEAL_MS);
+    const autoRevealTimer = window.setTimeout(reveal, reducedMotion ? 400 : AUTO_REVEAL_MS);
     return () => {
       window.clearTimeout(autoRevealTimer);
       if (completeTimerRef.current !== null) window.clearTimeout(completeTimerRef.current);
@@ -42,7 +42,7 @@ export default function OpeningSpotlight({ onComplete }: OpeningSpotlightProps) 
       document.body.style.overflow = previousOverflow;
       window.history.scrollRestoration = previousRestoration;
     };
-  }, [reveal]);
+  }, [reveal, reducedMotion]);
 
   const moveSpotlight = (event: PointerEvent<HTMLButtonElement>) => {
     if (revealing || event.pointerType === "touch") return;
@@ -66,8 +66,39 @@ export default function OpeningSpotlight({ onComplete }: OpeningSpotlightProps) 
       onClick={reveal}
       aria-label="Enter the Future Reality AI Film Festival website"
     >
+      <div className="opening-curtain" aria-hidden="true" />
+      <div className="opening-scan" aria-hidden="true" />
+
+      <motion.div
+        className="opening-chrome"
+        aria-hidden="true"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: revealing ? 0 : 1 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
+      >
+        <span className="opening-chrome__tag">Future Reality · Sequence 01</span>
+        <span className="opening-chrome__hint">Move light · Click to enter</span>
+      </motion.div>
+
+      <div className="opening-frame" aria-hidden="true">
+        <span className="opening-frame__corner opening-frame__corner--tl" />
+        <span className="opening-frame__corner opening-frame__corner--tr" />
+        <span className="opening-frame__corner opening-frame__corner--bl" />
+        <span className="opening-frame__corner opening-frame__corner--br" />
+      </div>
+
+      <span className="opening-ring" aria-hidden="true" />
       <span className="opening-mask-hole" aria-hidden="true" />
-      <span className="sr-only">Click to enter. The website will open automatically after three seconds.</span>
+
+      <motion.div
+        className="opening-burst"
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={revealing ? { opacity: [0, 0.85, 0], scale: [0.6, 2.4, 3] } : { opacity: 0, scale: 0.6 }}
+        transition={{ duration: reducedMotion ? 0.01 : 1.1, ease: [0.22, 1, 0.36, 1] }}
+      />
+
+      <span className="sr-only">Click to enter. The website will open automatically after a few seconds.</span>
     </button>
   );
 }

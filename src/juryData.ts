@@ -170,13 +170,13 @@ export const preliminaryJury = sortJuryByName(preliminaryJuryData);
 
 const grandJuryData: JuryMember[] = [
   {
-    "id": "michelle-cortese",
-    "name": "Michelle Cortese",
-    "role": "Design Director",
-    "initials": "MC",
-    "organization": "Meta",
-    "bio": "Michelle Cortese is a designer, researcher and educator. She splits her professional time between serving as a Design Director of Input and Interaction at Meta Reality Labs and teaching XR design and prototyping at NYU ITP. Her work explores immersive interaction systems; the ethical implications of embodied technology on end users; and the transmutation of human expression across new technologies and formats. She has been responsible for many of Meta's AR and VR design and interaction systems. Michelle has authored extensive immersive design research published via Bloomsbury Visual Arts, Meta Research, IEEE, OneZero, MIT's Immerse Journal and more; she has also exhibited work at CES, Tribeca Film Festival, SXSW, and Sundance Film Festival.",
-    "website": "https://www.ellecor.com/"
+    "id": "annabelle-yu-long",
+    "photo": "/jury/annabelle-yu-long.jpg",
+    "name": "Annabelle Yu Long",
+    "role": "Founding & Managing Partner",
+    "initials": "AL",
+    "organization": "BAI Capital",
+    "bio": "Annabelle Yu Long is an experienced venture capitalist and board member with a strong background in digital innovation, and business operations in Asia/Pacific. She currently serves as Founding and Managing Partner of BAI Capital, a venture capital firm focused on businesses operating in Asia and beyond with investments across AI, fintech, consumer retail, media and content innovation. Additionally, Ms. Long is a member of the Group Management Committee of Bertelsmann, where she contributes to global corporate strategy and development, and where she has led Bertelsmann’s China growth strategy and its transformation into a well-regarded global investment powerhouse.\n\nMs. Long serves as an independent director on the boards of The Estée Lauder Companies Inc. (NYSE: EL), Tapestry, Inc. (NYSE: TPR, whose portfolio includes Coach and Kate Spade), and NIO Inc. (NYSE: NIO; HKEX: 9866; SGX: NIO). In addition, she serves as an independent non-executive director on the board of The Hongkong and Shanghai Banking Corporation Limited.\n\nMs. Long holds an MBA from the Stanford Graduate School of Business and, as a distinguished alumna, served on the School’s Advisory Council as its first Chinese member. She was named a Young Global Leader by the World Economic Forum (WEF) in 2011 and has been actively involved in WEF activities. She has been featured in the Forbes Midas List and Forbes Asia's Power Businesswomen list, among others."
   },
   {
     "id": "bradley-g-munkowitz",
@@ -230,8 +230,9 @@ const grandJuryData: JuryMember[] = [
     "id": "song-wen",
     "photo": "/jury/song-wen.jpg",
     "name": "Song Wen",
-    "role": "FIRST影展创始人",
+    "role": "Founder",
     "initials": "SW",
+    "organization": "FIRST International Film Festival",
     "bio": "Song Wen previously worked at the venture capital firm IDG Capital. His cross-sector background has given him a distinctive industry perspective and a strong operational mindset. Over the past two decades, he and his team have built FIRST into one of Asia’s most influential platforms for emerging filmmakers.\n\nThrough the ecosystem cultivated by FIRST, filmmakers including Wen Muye, Xin Yukun, Shao Yihui, Teng Congcong, Zhang Dalei, and Gu Xiaogang have gained international recognition. Song has also worked to broaden public access to film education, curating and organizing public programs at FIRST with renowned filmmakers and artists such as Béla Tarr, Isabelle Huppert, Wong Kar-wai, and Jiang Wen. Through these initiatives, he has helped create a more open and accessible environment for film education.\n\nAs a producer, Song has financed and produced works including The Enigma of Arrival, Wrath of Silence, Day Is Done, and All Tomorrow’s Parties, many of which have received recognition at international film festivals. In 2025, he launched the Angta Island UNTITLED Interactive Art Exhibition, exploring new intersections among cinema, digital art, gaming, and AIGC.\n\nHis longstanding work in curation, filmmaking, and education has led international publications such as The Hollywood Reporter and Screen International to describe him as “a key architect of Asia’s emerging-filmmaker ecosystem.”\n\nSong is a graduate of the 2018 EMBA cohort at The Chinese University of Hong Kong Business School. He currently also serves as an industry mentor for graduate students at the Communication University of China."
   },
   {

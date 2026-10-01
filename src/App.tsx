@@ -48,9 +48,9 @@ function EventEssentials() {
     <section className="border-y border-brand-line bg-brand-accent text-brand-bg" aria-label="Festival information">
       <div className="mx-auto grid max-w-7xl grid-cols-1 px-6 md:grid-cols-3 md:px-16">
         {facts.map(([label, value]) => (
-          <div key={label} className="flex items-baseline justify-between gap-4 border-b border-black/20 py-4 last:border-b-0 md:block md:border-b-0 md:border-r md:px-8 md:py-6 md:first:pl-0 md:last:border-r-0">
+          <div key={label} className="flex items-baseline justify-between gap-4 border-b border-black/20 py-4 text-left last:border-b-0 md:block md:border-b-0 md:border-r md:px-8 md:py-6 md:first:pl-0 md:last:border-r-0">
             <span className="label text-[9px] text-brand-bg/65">{label}</span>
-            <p className="font-display text-xl uppercase md:mt-2 md:text-2xl">{value}</p>
+            <p className="font-display text-xl uppercase md:mt-2 md:text-left md:text-2xl">{value}</p>
           </div>
         ))}
       </div>
@@ -69,14 +69,14 @@ function AiProcessRail() {
   return (
     <section className="ai-process relative overflow-hidden border-b border-brand-line" aria-labelledby="ai-process-title">
       <div className="relative z-[1] mx-auto max-w-7xl px-6 py-16 md:px-16 md:py-20">
-        <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
-          <div>
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-3 text-left">
+          <div className="text-left">
             <span className="label text-brand-accent">How we see AI</span>
             <h2 id="ai-process-title" className="mt-2 font-display text-3xl uppercase text-brand-ink md:text-4xl">
               Human vision. Machine possibility.
             </h2>
           </div>
-          <p className="max-w-sm font-serif text-sm leading-relaxed text-brand-muted">
+          <p className="max-w-sm text-left font-serif text-sm leading-relaxed text-brand-muted md:text-left">
             AI expands the creative process. Filmmakers remain responsible for the intention, direction, and final work.
           </p>
         </div>
@@ -291,7 +291,7 @@ export default function App() {
               <JuryPage />
             ) : (
               <>
-            <HeroStage onOpenJury={openJury} />
+            <HeroStage onOpenJury={openJury} openingActive={openingVisible} />
             <EventEssentials />
             <AiProcessRail />
 

@@ -73,7 +73,7 @@ function JuryCard({ member, panel }: { member: JuryMember; panel: string }) {
       </div>
 
       {(paragraphs.length > 0 || member.website) && (
-        <div className="relative mt-auto border-t border-brand-line px-6 py-5 space-y-3">
+        <div className="relative mt-auto border-t border-brand-line px-6 py-5 space-y-3 text-left">
           {paragraphs.length > 0 &&
             (long && !open ? (
               <p className="font-serif text-sm text-brand-ink/80 leading-relaxed line-clamp-4">{paragraphs.join(" ")}</p>
@@ -130,7 +130,9 @@ function JurySection({
           </h3>
           <span className="label text-brand-copper">{String(section.members.length).padStart(2, "0")}</span>
         </div>
-        <p className="font-serif text-base text-brand-muted max-w-md md:text-right leading-relaxed">{section.summary}</p>
+        <p className="font-serif text-base text-brand-muted max-w-md leading-relaxed md:ml-auto md:text-left">
+          {section.summary}
+        </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {section.members.map((member, idx) => (
@@ -188,7 +190,7 @@ export default function JuryPage() {
     <div id="jury-page">
       <section className="relative overflow-hidden border-b border-brand-line jury-surface">
         <div className="hero-deep-mask hero-deep-mask--jury" aria-hidden="true" />
-        <div className="relative z-[1] max-w-7xl mx-auto px-6 md:px-16 pt-40 pb-20 text-center space-y-5">
+        <div className="jury-page-hero relative z-[1] max-w-7xl mx-auto px-6 md:px-16 pt-40 pb-20 space-y-5">
           <span className="font-serif text-sm font-semibold uppercase tracking-[0.2em] text-brand-cream">2026 Edition</span>
           <h2 className="font-display uppercase text-brand-ink text-[clamp(4rem,12vw,10rem)] leading-[0.88]">
             <MaskLine delay={0.1}>The Jury</MaskLine>
