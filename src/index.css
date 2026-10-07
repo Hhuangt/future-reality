@@ -121,7 +121,6 @@ body::-webkit-scrollbar {
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 .home-city-flow__tech {
@@ -157,6 +156,10 @@ body::-webkit-scrollbar {
 
 .ending-navigation {
   text-align: left;
+}
+
+.ending-navigation--home-terminal {
+  border-bottom: none;
 }
 
 .background-tech-layer__grid {

@@ -29,7 +29,8 @@ function Portrait({ member }: { member: JuryMember }) {
         <img
           src={assetUrl(member.photo)}
           alt={`${member.name} headshot`}
-          className="h-full w-full object-cover object-top"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: member.photoObjectPosition ?? "center top" }}
           loading="lazy"
           referrerPolicy="no-referrer"
         />
@@ -227,7 +228,7 @@ export default function JuryPage() {
       </div>
 
       <div className="relative overflow-hidden border-t border-brand-line jury-surface">
-        <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-20 space-y-24">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-8 md:pt-16 md:pb-10 space-y-16">
         {sections.map((section) => (
           <Fragment key={section.id}>
             <JurySection

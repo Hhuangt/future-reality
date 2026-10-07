@@ -144,6 +144,27 @@ const preliminaryJuryData: JuryMember[] = [
     "initials": "YY",
     "organization": "Karsen Studio",
     "bio": "Yaocheng Yang is a filmmaker and Cinematic Artist working at the intersection of filmmaking, animation, real-time 3D, and generative AI. Based in Shenzhen, he works as a Cinematic Artist focusing on camera, lighting, editing, previs, and motion capture data processing for feature-length 3D animation. His workflow combines traditional cinematic language with Unreal Engine 5 and generative AI.\n\nHis work explores how emerging technologies can reshape the way stories are designed, visualized, and brought to life."
+  },
+  {
+    "id": "yining-cici-dai",
+    "photo": "/jury/yining-cici-dai.jpg",
+    "name": "Yining (Cici) Dai",
+    "role": "Producer",
+    "initials": "YD",
+    "organization": "Mad Lychee Productions",
+    "bio": "Yining (Cici) Dai is an international film and media producer and the founder of Mad Lychee Productions, with experience spanning narrative film, documentaries, commercial content, and emerging media across the U.S. and China. A graduate of the USC School of Cinematic Arts and a Mary Pickford Family Scholar, she has produced projects ranging from award-winning documentaries and hit vertical series to virtual production and AI-driven films.\n\nHer selected credits include the CCTV award-winning documentary \"Panda Yunchuan & Xinbao\", GoodShort's hit series \"Oops I Married My Daughter's Daddy\", and \"How Can I Not Forget\", part of the Amazon Future Cinema Creators Project, recently screened at Amazon Studios. With hands-on experience integrating AI into cinematic storytelling, Cici brings a cross-disciplinary producer's perspective to the evolving intersection of filmmaking, technology, and creative innovation.",
+    "website": "https://www.linkedin.com/in/cici-dai-a24276424"
+  },
+  {
+    "id": "zimeng-cui",
+    "photo": "/jury/zimeng-cui.jpg",
+    "photoObjectPosition": "center center",
+    "name": "Zimeng Cui",
+    "role": "AI Executive Producer",
+    "initials": "ZC",
+    "organization": "Yuewen Group",
+    "bio": "Zimeng Cui is a producer with experience in film and television development and production across China and the United States. She currently serves as an AI Executive Producer on Yuewen Group’s U.S. team, developing and producing AI-driven short-form dramas for international audiences. Her work spans independent film, documentary, and vertical drama, with a focus on cross-cultural storytelling and the integration of AI into filmmaking.",
+    "website": "https://www.linkedin.com/in/zimeng-c-4a3615344"
   }
 ];
 

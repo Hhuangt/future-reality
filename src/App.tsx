@@ -508,11 +508,12 @@ export default function App() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Footer — jury only; homepage ends at EndingNavigation */}
+      {activePage === "jury" && (
       <footer id="app-footer" className="border-t border-brand-line bg-brand-bg">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 py-12 md:py-14">
-          <FestivalLogo size="md" className="mb-10 block text-left" />
-          <div className="footer-grid grid grid-cols-1 gap-12 border-b border-brand-line pb-10 lg:grid-cols-3 lg:gap-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-16 py-8 md:py-10">
+          <FestivalLogo size="md" className="mb-6 block text-left" />
+          <div className="footer-grid grid grid-cols-1 gap-8 border-b border-brand-line pb-6 lg:grid-cols-3 lg:gap-12">
             <div className="footer-col">
               <span className="footer-kicker">Festival</span>
               <p className="max-w-sm font-sans text-sm leading-relaxed text-brand-muted">
@@ -597,6 +598,7 @@ export default function App() {
           <p className="pt-6 font-sans text-xs text-brand-muted">© 2026 Future Reality AI Film Festival</p>
         </div>
       </footer>
+      )}
 
       {/* Partner inquiry */}
       <Modal isOpen={activeModal === "partner"} onClose={closeModal} title="Partner with us" kicker="Partnerships">
