@@ -74,16 +74,6 @@ const preliminaryJuryData: JuryMember[] = [
     "website": "https://www.linkedin.com/in/annine-fan-zhang"
   },
   {
-    "id": "benny-lee",
-    "photo": "/jury/benny-lee.png",
-    "name": "Benny Lee",
-    "role": "Sr Manager of AI Design",
-    "initials": "BL",
-    "organization": "Newell Brands",
-    "bio": "Benny Lee is an enterprise technology strategist and AI futurist and he leads AI initiatives for Newell Brands. He also served as the Design Lead for Technology & Strategic Partnerships for AI council at The Coca-Cola Company. He has built a future-ready creative operation, AI rapid test-and-learn team, shaped AI strategy, and formed new partnerships that push the boundaries of what creative work can be. With over 15 years of experience in design, he has contributed to the creation of engaging and memorable experiences for consumers within the digital domain and retail environment. Over the last decade, he has led global initiatives such as the Coca-Cola AI Santa Campaign, directed two AI short films and brought over 20 products to market.\n\nHe is a frequent keynote speaker on global AI and XR forums, and consults enterprise partners on scalable AI solutions. Benny applies his technical insights in emerging tech, product management, and creative AI to enhance and remix brands into new experiences for customers. His goal is to continuously push the boundaries of what is possible in Human-AI era, and inspire others to do the same",
-    "website": "https://www.linkedin.com/in/bennyleedesign/"
-  },
-  {
     "id": "xuetong-joey-zhao",
     "photo": "/jury/xuetong-joey-zhao.jpg",
     "name": "Xuetong Joey Zhao",
@@ -145,15 +135,6 @@ const preliminaryJuryData: JuryMember[] = [
     "name": "LM Xie",
     "role": "Founder of TODAY AI ART; Secretary-General of AIAIA (AI Art Innovation Alliance); Chief Curator of the AI Film Season at the Hainan Island International Film Festival; Chief Advisor of AI Backlot at the Shanghai International Film Festival",
     "initials": "LX"
-  },
-  {
-    "id": "kadine-james",
-    "photo": "/jury/kadine-james.jpeg",
-    "name": "Kadine James",
-    "role": "CEO Founder & Artistic Director",
-    "initials": "KJ",
-    "organization": "The Immersive KIND",
-    "bio": "Kadine James is a digital artist, creative technologist and founder of The Immersive KIND, working at the intersection of artificial intelligence, virtual reality, extended reality (XR), games and immersive worlds. Her practice explores how AI, real-time technologies, virtual production and game engines are creating new forms of storytelling, digital identity and interactive experience.\n\nShe is a Senior Lecturer and Researcher at the University of Hertfordshire, leading work across AI Film and New Formats. Her work spans AI cinema, virtual worlds, Fortnite/UEFN experiences, digital fashion, CGI and immersive installations, with projects and talks presented internationally across art, film, design and technology."
   },
   {
     "id": "yaocheng-yang",
