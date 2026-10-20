@@ -7,9 +7,10 @@ interface ModalProps {
   title: string;
   kicker?: string;
   children: ReactNode;
+  size?: "default" | "wide";
 }
 
-export default function Modal({ isOpen, onClose, title, kicker, children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, kicker, children, size = "default" }: ModalProps) {
   useEffect(() => {
     if (!isOpen) return;
     document.body.style.overflow = "hidden";
@@ -45,7 +46,9 @@ export default function Modal({ isOpen, onClose, title, kicker, children }: Moda
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
-            className="frame-corners relative w-full max-w-2xl bg-brand-surface border border-brand-line p-6 md:p-9 z-10"
+            className={`frame-corners relative z-10 w-full border border-brand-line bg-brand-surface p-6 md:p-9 ${
+              size === "wide" ? "max-w-5xl" : "max-w-2xl"
+            }`}
             id="modal-container"
           >
             <div className="flex items-start justify-between gap-6 border-b border-brand-line pb-5 mb-6">

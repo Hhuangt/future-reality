@@ -58,7 +58,9 @@ export default function FinalistsPreview({ onOpen }: { onOpen: () => void }) {
                 <img
                   src={assetUrl(film.poster)}
                   alt={`${film.title} poster`}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.035]"
+                  className={`h-full w-full transition-transform duration-700 hover:scale-[1.035] ${
+                    film.landscape ? "object-contain p-2" : "object-cover"
+                  }`}
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />

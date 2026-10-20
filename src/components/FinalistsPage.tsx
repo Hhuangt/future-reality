@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { FinalistFilm, finalists } from "../finalistsData";
 import { assetUrl } from "../lib/assetUrl";
 import Modal from "./Modal";
-import { MaskLine, reveal } from "./ui";
+import { reveal } from "./ui";
 
 function FilmCard({ film, index, onOpen }: { film: FinalistFilm; index: number; onOpen: () => void }) {
   const details = [film.country, film.runtime].filter(Boolean).join(" · ");
@@ -20,16 +20,15 @@ function FilmCard({ film, index, onOpen }: { film: FinalistFilm; index: number; 
           <img
             src={assetUrl(film.poster)}
             alt={`${film.title} poster`}
-            className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.025]"
+            className={`h-full w-full transition-transform duration-700 group-hover:scale-[1.025] ${
+              film.landscape ? "object-contain p-2 md:p-3" : "object-cover"
+            }`}
             loading="lazy"
           />
           <div
             className="absolute inset-0 opacity-0 ring-1 ring-inset ring-brand-accent transition-opacity group-hover:opacity-100"
             aria-hidden="true"
           />
-          <span className="absolute left-3 top-3 bg-brand-bg/85 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-brand-cream backdrop-blur-sm">
-            FR-{film.id}
-          </span>
         </div>
 
         <div className="flex flex-1 flex-col p-4 md:p-5">
@@ -85,9 +84,15 @@ export default function FinalistsPage() {
           <span className="font-serif text-sm font-semibold uppercase tracking-[0.2em] text-brand-cream">
             2026 Official Selection
           </span>
-          <h1 className="mt-5 font-display text-[clamp(4.5rem,13vw,11rem)] uppercase leading-[0.84] text-brand-ink">
-            <MaskLine delay={0.1}>Finalists</MaskLine>
-          </h1>
+          <motion.h1
+            className="mt-5 pb-[0.08em] pt-[0.06em] font-display text-[clamp(4.5rem,13vw,11rem)] uppercase leading-[0.92] text-brand-ink"
+            initial={{ opacity: 0, y: 48 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Finalists
+          </motion.h1>
           <p className="mx-auto mt-7 max-w-2xl font-serif text-lg leading-relaxed text-brand-ink/85 md:text-xl">
             {finalists.length} films selected from a global field of AI-native and AI-assisted cinematic work.
           </p>
@@ -172,20 +177,21 @@ export default function FinalistsPage() {
         isOpen={selected !== null}
         onClose={() => setSelected(null)}
         title={selected?.title ?? ""}
-        kicker={selected ? `Official finalist · FR-${selected.id}` : undefined}
+        kicker={selected ? "Official finalist" : undefined}
+        size="wide"
       >
         {selected && (
-          <div className="grid gap-7 md:grid-cols-[minmax(0,15rem)_1fr]">
-            <div className="overflow-hidden border border-brand-line bg-black">
-              <img src={assetUrl(selected.poster)} alt={`${selected.title} poster`} className="h-auto w-full object-contain" />
-            </div>
-            <div className="space-y-6">
+          <div className="grid items-start gap-8 md:grid-cols-[18rem_minmax(0,1fr)] md:gap-10">
+            <aside className="min-w-0 space-y-5">
               <div>
-                <span className="label text-[9px] text-brand-copper">Synopsis</span>
-                <p className="mt-3 whitespace-pre-line font-serif text-[15px] leading-relaxed text-brand-ink/90">
-                  {selected.synopsis ||
-                    `${selected.title} is an official finalist${selected.country ? ` from ${selected.country}` : ""}${selected.directors ? `, directed by ${selected.directors}` : ""}${selected.runtime ? `, with a runtime of ${selected.runtime}` : ""}.`}
-                </p>
+                <span className="label block h-4 text-[9px] text-brand-copper">Poster</span>
+                <div className="mt-3 overflow-hidden border border-brand-line bg-black">
+                  <img
+                    src={assetUrl(selected.poster)}
+                    alt={`${selected.title} poster`}
+                    className="h-auto max-h-[58vh] w-full object-contain"
+                  />
+                </div>
               </div>
               <dl className="border-t border-brand-line">
                 {[
@@ -196,15 +202,22 @@ export default function FinalistsPage() {
                 ]
                   .filter(([, value]) => Boolean(value))
                   .map(([label, value]) => (
-                    <div key={label} className="grid grid-cols-[6rem_1fr] gap-4 border-b border-brand-line py-3">
+                    <div key={label} className="grid grid-cols-[5.5rem_1fr] gap-3 border-b border-brand-line py-3">
                       <dt className="label text-[9px] text-brand-muted">{label}</dt>
-                      <dd className="font-serif text-sm text-brand-ink">{value}</dd>
+                      <dd className="font-serif text-sm leading-snug text-brand-ink">{value}</dd>
                     </div>
                   ))}
               </dl>
-              <p className="border-l border-brand-copper pl-4 font-serif text-sm leading-relaxed text-brand-muted">
-                Official finalist of the 2026 Future Reality AI Film Festival in New York City.
-              </p>
+            </aside>
+
+            <div className="min-w-0 space-y-7">
+              <div>
+                <span className="label block h-4 text-[9px] text-brand-copper">Synopsis</span>
+                <p className="mt-3 whitespace-pre-line font-serif text-[15px] leading-relaxed text-brand-ink/90">
+                  {selected.synopsis ||
+                    `${selected.title} is an official finalist${selected.country ? ` from ${selected.country}` : ""}${selected.directors ? `, directed by ${selected.directors}` : ""}${selected.runtime ? `, with a runtime of ${selected.runtime}` : ""}.`}
+                </p>
+              </div>
             </div>
           </div>
         )}
