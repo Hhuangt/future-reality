@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig, useScroll, useSpring } from "motion/react";
-import { festivalPillars, competitionCategories, CompetitionCategoryItem } from "./data";
+import { competitionCategories, CompetitionCategoryItem } from "./data";
 import { Submission } from "./types";
 import Modal from "./components/Modal";
 import SubmissionForm from "./components/SubmissionForm";
-import { DeoVrLogo, SohoLogo, HxrLogo } from "./components/CollaboratorLogos";
+import { PresentingPartnerLogos } from "./components/CollaboratorLogos";
 import { GlobalNetworkGallery } from "./components/GlobalNetworkGallery";
 import SubmissionGuidelinesAccordion from "./components/SubmissionGuidelinesAccordion";
 import JuryPage from "./components/JuryPage";
+import FinalistsPage from "./components/FinalistsPage";
+import FinalistsPreview from "./components/FinalistsPreview";
 import FestivalLogo from "./components/FestivalLogo";
 import HeroStage from "./components/HeroStage";
 import CursorSpotlight from "./components/CursorSpotlight";
@@ -24,7 +26,7 @@ const navItems = [
   { label: "About", id: "manifesto-rich-section" },
   { label: "Awards", id: "competition-section" },
   { label: "Network", id: "global-network-section" },
-  { label: "Programme", id: "experience-section" },
+  { label: "Finalists", id: "finalists-page" },
   { label: "Jury", id: "jury-page" },
 ];
 
@@ -34,10 +36,15 @@ const principles = [
   { title: "AI with Intention", text: "Tools chosen on purpose, in service of the film." },
 ];
 
-const isImmersive = (id: string | null) =>
-  id === "immersive_future_reality" || id === "immersive_live_cinema" || id === "live_cinema";
-
 const isJuryRoute = (hash: string) => hash === "#jury" || hash.startsWith("#jury-");
+const isFinalistsRoute = (hash: string) => hash === "#finalists";
+type Page = "home" | "jury" | "finalists";
+
+const pageFromHash = (hash: string): Page => {
+  if (isJuryRoute(hash)) return "jury";
+  if (isFinalistsRoute(hash)) return "finalists";
+  return "home";
+};
 
 function EventEssentials() {
   const facts = [
@@ -97,8 +104,8 @@ function AiProcessRail() {
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activePage, setActivePage] = useState<"home" | "jury">(
-    typeof window !== "undefined" && isJuryRoute(window.location.hash) ? "jury" : "home"
+  const [activePage, setActivePage] = useState<Page>(
+    typeof window !== "undefined" ? pageFromHash(window.location.hash) : "home"
   );
   const [openingVisible, setOpeningVisible] = useState(activePage === "home");
   const { scrollYProgress } = useScroll();
@@ -123,7 +130,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const syncPage = () => setActivePage(isJuryRoute(window.location.hash) ? "jury" : "home");
+    const syncPage = () => setActivePage(pageFromHash(window.location.hash));
     window.addEventListener("hashchange", syncPage);
     return () => window.removeEventListener("hashchange", syncPage);
   }, []);
@@ -131,7 +138,7 @@ export default function App() {
   useEffect(() => {
     if (activePage !== "home") return;
     const nodes = navItems
-      .filter((item) => item.id !== "jury-page")
+      .filter((item) => item.id !== "jury-page" && item.id !== "finalists-page")
       .map((item) => document.getElementById(item.id))
       .filter((node): node is HTMLElement => node !== null);
     const observer = new IntersectionObserver(
@@ -173,10 +180,21 @@ export default function App() {
     window.scrollTo({ top: 0 });
   };
 
+  const openFinalists = () => {
+    setIsMenuOpen(false);
+    setActivePage("finalists");
+    window.history.replaceState(null, "", "#finalists");
+    window.scrollTo({ top: 0 });
+  };
+
   const scrollTo = (id: string) => {
     setIsMenuOpen(false);
     if (id === "jury-page") {
       openJury();
+      return;
+    }
+    if (id === "finalists-page") {
+      openFinalists();
       return;
     }
     if (activePage !== "home") {
@@ -220,6 +238,7 @@ export default function App() {
             {navItems.map((item) => {
               const active =
                 (item.id === "jury-page" && activePage === "jury") ||
+                (item.id === "finalists-page" && activePage === "finalists") ||
                 (activePage === "home" && item.id === activeNavId);
               return (
                 <button
@@ -290,6 +309,8 @@ export default function App() {
           <div className="home-city-flow__content">
             {activePage === "jury" ? (
               <JuryPage />
+            ) : activePage === "finalists" ? (
+              <FinalistsPage />
             ) : (
               <>
             <HeroStage onOpenJury={openJury} openingActive={openingVisible} />
@@ -385,63 +406,8 @@ export default function App() {
               </div>
             </section>
 
-            {/* Programme */}
-            <section id="experience-section" className="relative scroll-mt-20 overflow-hidden border-t border-brand-line">
-              <div className="max-w-7xl mx-auto px-6 md:px-16 py-20 md:py-28 space-y-12">
-                <SectionHeader
-                  reel="04"
-                  label="Programme"
-                  title="The festival experience"
-                  intro="Generative cinema, spatial storytelling, critical conversation, and theatrical screenings — AI moves from tool to medium for one night at Village East by Angelika."
-                />
-                <motion.figure
-                  className="relative aspect-[16/9] overflow-hidden border border-brand-line bg-brand-surface"
-                  initial="hidden"
-                  whileInView="shown"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <motion.img
-                    src={assetUrl("/poster/cinema-red.jpg")}
-                    alt="A red-lit cinema auditorium facing the screen"
-                    className="h-full w-full object-cover"
-                    variants={{ hidden: { scale: 1.08 }, shown: { scale: 1 } }}
-                    transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                  <motion.div
-                    className="absolute inset-0 z-10 origin-top bg-brand-accent"
-                    variants={{ hidden: { scaleY: 1 }, shown: { scaleY: 0 } }}
-                    transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-                    aria-hidden="true"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" aria-hidden="true" />
-                  <figcaption className="absolute inset-x-5 bottom-4 z-20 flex items-end justify-between gap-4 md:inset-x-8 md:bottom-7">
-                    <span className="label text-[9px] text-brand-accent-bright">Theater 01 · Village East by Angelika</span>
-                    <span className="hidden font-serif text-sm italic text-brand-ink md:block">One night in New York</span>
-                  </figcaption>
-                </motion.figure>
-                <ol className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 border-t border-brand-line">
-                  {festivalPillars.map((pillar, idx) => (
-                    <motion.li
-                      key={pillar.id}
-                      {...reveal(idx * 0.12)}
-                      className="relative pt-8 pb-10 xl:px-7 xl:first:pl-0 xl:border-l xl:first:border-l-0 border-brand-line border-b xl:border-b-0 md:odd:pr-8 xl:odd:pr-7 space-y-4 flex flex-col"
-                    >
-                      <span className="font-display text-6xl text-brand-copper/60 leading-none tabular-nums">0{idx + 1}</span>
-                      <span className="label text-[10px] text-brand-copper">{pillar.tag}</span>
-                      <h3 className="font-display uppercase text-3xl text-brand-ink leading-none">{pillar.title}</h3>
-                      <p className="font-serif text-[15px] text-brand-muted leading-relaxed flex-1">{pillar.description}</p>
-                      {isImmersive(pillar.id) && (
-                        <div className="flex items-center gap-3 pt-2">
-                          <span className="label text-[10px] text-brand-muted">With</span>
-                          <DeoVrLogo size="sm" />
-                        </div>
-                      )}
-                      {pillar.id !== "awards" && <span className="label text-[10px] text-brand-muted/80">Details to be announced</span>}
-                    </motion.li>
-                  ))}
-                </ol>
-              </div>
-            </section>
+            {/* Finalists */}
+            <FinalistsPreview onOpen={openFinalists} />
 
             {/* Tickets */}
             <section id="submit-film-section" className="relative scroll-mt-20 overflow-hidden border-t border-brand-line">
@@ -508,8 +474,8 @@ export default function App() {
         </div>
       </main>
 
-      {/* Footer — jury only; homepage ends at EndingNavigation */}
-      {activePage === "jury" && (
+      {/* Interior-page footer; homepage ends at EndingNavigation */}
+      {activePage !== "home" && (
       <footer id="app-footer" className="border-t border-brand-line bg-brand-bg">
         <div className="max-w-7xl mx-auto px-6 md:px-16 py-8 md:py-10">
           <FestivalLogo size="md" className="mb-6 block text-left" />
@@ -549,18 +515,11 @@ export default function App() {
             <div className="footer-col">
               <div className="footer-block">
                 <span className="footer-kicker">Presented by</span>
-                <div className="flex flex-wrap items-center gap-6">
-                  <a href="https://sohofilmfest.com" target="_blank" rel="noreferrer" aria-label="SOHO International Film Festival">
-                    <SohoLogo size="sm" variant="dark" className="!h-10" />
-                  </a>
-                  <a href="https://harvardxr.com" target="_blank" rel="noreferrer" aria-label="Harvard XR">
-                    <HxrLogo size="sm" variant="dark" className="!h-8" />
-                  </a>
-                </div>
-              </div>
-              <div className="footer-block">
-                <span className="footer-kicker">Immersive partner</span>
-                <DeoVrLogo size="sm" />
+                <PresentingPartnerLogos
+                  className="justify-start"
+                  sohoClassName="!h-10"
+                  hxrClassName="!h-8"
+                />
               </div>
               <form onSubmit={handleNewsletterSubmit} className="footer-block w-full" noValidate>
                 <label htmlFor="newsletter-email" className="footer-kicker">

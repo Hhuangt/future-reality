@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { HxrLogo, SohoLogo } from "./CollaboratorLogos";
+import { PresentingPartnerLogos } from "./CollaboratorLogos";
 import HeroHud from "./HeroHud";
 import { assetUrl } from "../lib/assetUrl";
 import { buttonPrimary, buttonSecondary, EASE_OUT } from "./ui";
@@ -168,19 +168,14 @@ export default function HeroStage({ onOpenJury, openingActive = false }: HeroSta
               <br />
               New York City
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-5 sm:justify-end md:gap-7">
-              <a
-                href="https://sohofilmfest.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="SOHO International Film Festival"
-                id="hero-soho-logo-link"
-              >
-                <SohoLogo size="sm" variant="dark" className="!h-9 md:!h-11" />
-              </a>
-              <a href="https://harvardxr.com" target="_blank" rel="noreferrer" aria-label="Harvard XR" id="hero-hxr-logo-link">
-                <HxrLogo size="sm" variant="dark" className="!h-7 md:!h-8" />
-              </a>
+            <div className="space-y-3">
+              <p className="label text-center text-[9px] text-brand-muted sm:text-right">
+                Presented by
+              </p>
+              <PresentingPartnerLogos
+                sohoClassName="!h-10 md:!h-12"
+                hxrClassName="!h-8 md:!h-10"
+              />
             </div>
           </motion.div>
         </motion.div>

@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import { motion } from "motion/react";
 import { assetUrl } from "../lib/assetUrl";
 import { EASE_OUT, SectionHeader, reveal } from "./ui";
+import CommunityPartners from "./CommunityPartners";
 
 const groups = [
   {
@@ -109,6 +110,8 @@ export const GlobalNetworkGallery: React.FC = () => {
           </div>
         );
       })}
+
+      <CommunityPartners />
 
       <Modal
         isOpen={selected !== null}

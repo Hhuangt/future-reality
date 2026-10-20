@@ -21,10 +21,10 @@ const logoSizeClasses = {
     xl: "h-20 sm:h-24 md:h-28",
   },
   deovr: {
-    sm: "h-8 sm:h-9",
-    md: "h-10 sm:h-11",
-    lg: "h-14 sm:h-16",
-    xl: "h-16 sm:h-20",
+    sm: "h-10 sm:h-11 md:h-12",
+    md: "h-12 sm:h-14 md:h-16",
+    lg: "h-16 sm:h-20 md:h-24",
+    xl: "h-20 sm:h-24 md:h-28",
   },
 } as const;
 
@@ -68,7 +68,7 @@ export const HxrLogo: React.FC<LogoProps> = ({ className = "", variant = "dark",
   );
 };
 
-/** DeoVR — immersive partner wordmark. */
+/** DeoVR — presenting partner wordmark. */
 export const DeoVrLogo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
   const sizeClass = logoSizeClasses.deovr[size];
 
@@ -81,7 +81,7 @@ export const DeoVrLogo: React.FC<LogoProps> = ({ className = "", size = "md" }) 
       aria-label="DeoVR"
     >
       <img
-        src={assetUrl("/logos/deovr.jpg")}
+        src={assetUrl("/logos/deovr-wordmark.png")}
         alt="DeoVR"
         width={1024}
         height={352}
@@ -90,6 +90,37 @@ export const DeoVrLogo: React.FC<LogoProps> = ({ className = "", size = "md" }) 
     </a>
   );
 };
+
+/** Soho, Harvard XR, and DeoVR at the same presenting-partner tier. */
+export function PresentingPartnerLogos({
+  className = "",
+  sohoClassName = "!h-9 md:!h-11",
+  hxrClassName = "!h-7 md:!h-8",
+}: {
+  className?: string;
+  sohoClassName?: string;
+  hxrClassName?: string;
+}) {
+  return (
+    <div
+      className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-end md:gap-x-12 ${className}`}
+    >
+      <a
+        href="https://sohofilmfest.com"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="SOHO International Film Festival"
+        className="inline-block"
+      >
+        <SohoLogo size="sm" variant="dark" className={sohoClassName} />
+      </a>
+      <a href="https://harvardxr.com" target="_blank" rel="noreferrer" aria-label="Harvard XR" className="inline-block">
+        <HxrLogo size="sm" variant="dark" className={hxrClassName} />
+      </a>
+      <DeoVrLogo size="sm" className="shrink-0" />
+    </div>
+  );
+}
 
 /**
  * DREAMA Logo

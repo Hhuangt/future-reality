@@ -1,5 +1,5 @@
 type EndingNavigationProps = {
-  page: "home" | "jury";
+  page: "home" | "jury" | "finalists";
   onGoHome: () => void;
   onOpenJury: () => void;
 };
