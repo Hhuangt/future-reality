@@ -49,16 +49,17 @@ export default function FinalistsPreview({ onOpen }: { onOpen: () => void }) {
             {previewFilms.map((film, index) => (
               <motion.figure
                 key={film.id}
-                className={`relative overflow-hidden border border-brand-line bg-black ${
+                className={`group relative overflow-hidden border border-brand-line bg-black transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1 hover:border-brand-copper/60 hover:shadow-[0_22px_60px_rgba(0,0,0,0.32)] ${
                   index < 2 ? "col-span-3 aspect-[2/3]" : "col-span-2 aspect-[2/3]"
                 }`}
                 variants={{ hidden: { opacity: 0, y: 44 }, shown: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.8, delay: index * 0.08 }}
               >
+                <div className="absolute inset-x-0 top-0 z-10 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-brand-amber to-transparent transition-transform duration-700 group-hover:scale-x-100" aria-hidden="true" />
                 <img
                   src={assetUrl(film.poster)}
                   alt={`${film.title} poster`}
-                  className={`h-full w-full transition-transform duration-700 hover:scale-[1.035] ${
+                  className={`h-full w-full transition-transform duration-700 group-hover:scale-[1.035] ${
                     film.landscape ? "object-contain p-2" : "object-cover"
                   }`}
                   loading="lazy"

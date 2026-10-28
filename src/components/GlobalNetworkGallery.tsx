@@ -85,7 +85,7 @@ export const GlobalNetworkGallery: React.FC = () => {
   return (
     <div className="space-y-20" id="global-network-gallery">
       <SectionHeader
-        reel="03"
+        reel="06"
         label="Network"
         title={["Rooted in New York.", "Connected to the world."]}
         intro="Future Reality brings together film festivals, universities, and creator communities — from Manhattan screening rooms to Harvard research labs."

@@ -8,8 +8,12 @@ import { PresentingPartnerLogos } from "./components/CollaboratorLogos";
 import { GlobalNetworkGallery } from "./components/GlobalNetworkGallery";
 import SubmissionGuidelinesAccordion from "./components/SubmissionGuidelinesAccordion";
 import JuryPage from "./components/JuryPage";
+import JuryPreview from "./components/JuryPreview";
 import FinalistsPage from "./components/FinalistsPage";
 import FinalistsPreview from "./components/FinalistsPreview";
+import WinnersSection from "./components/WinnersSection";
+import WinnersPage from "./components/WinnersPage";
+import TeamPage from "./components/TeamPage";
 import FestivalLogo from "./components/FestivalLogo";
 import HeroStage from "./components/HeroStage";
 import CursorSpotlight from "./components/CursorSpotlight";
@@ -25,9 +29,11 @@ const FILMFREEWAY_URL = "https://filmfreeway.com/FutureRealityAIFilmFestival?pen
 const navItems = [
   { label: "About", id: "manifesto-rich-section" },
   { label: "Awards", id: "competition-section" },
-  { label: "Network", id: "global-network-section" },
+  { label: "Winners", id: "winners-page" },
   { label: "Finalists", id: "finalists-page" },
   { label: "Jury", id: "jury-page" },
+  { label: "Network", id: "global-network-section" },
+  { label: "Team", id: "team-page" },
 ];
 
 const principles = [
@@ -38,11 +44,15 @@ const principles = [
 
 const isJuryRoute = (hash: string) => hash === "#jury" || hash.startsWith("#jury-");
 const isFinalistsRoute = (hash: string) => hash === "#finalists";
-type Page = "home" | "jury" | "finalists";
+const isWinnersRoute = (hash: string) => hash === "#winners";
+const isTeamRoute = (hash: string) => hash === "#team";
+type Page = "home" | "jury" | "finalists" | "winners" | "team";
 
 const pageFromHash = (hash: string): Page => {
   if (isJuryRoute(hash)) return "jury";
   if (isFinalistsRoute(hash)) return "finalists";
+  if (isWinnersRoute(hash)) return "winners";
+  if (isTeamRoute(hash)) return "team";
   return "home";
 };
 
@@ -138,7 +148,7 @@ export default function App() {
   useEffect(() => {
     if (activePage !== "home") return;
     const nodes = navItems
-      .filter((item) => item.id !== "jury-page" && item.id !== "finalists-page")
+      .filter((item) => item.id !== "jury-page" && item.id !== "finalists-page" && item.id !== "winners-page" && item.id !== "team-page")
       .map((item) => document.getElementById(item.id))
       .filter((node): node is HTMLElement => node !== null);
     const observer = new IntersectionObserver(
@@ -187,6 +197,20 @@ export default function App() {
     window.scrollTo({ top: 0 });
   };
 
+  const openWinners = () => {
+    setIsMenuOpen(false);
+    setActivePage("winners");
+    window.history.replaceState(null, "", "#winners");
+    window.scrollTo({ top: 0 });
+  };
+
+  const openTeam = () => {
+    setIsMenuOpen(false);
+    setActivePage("team");
+    window.history.replaceState(null, "", "#team");
+    window.scrollTo({ top: 0 });
+  };
+
   const scrollTo = (id: string) => {
     setIsMenuOpen(false);
     if (id === "jury-page") {
@@ -195,6 +219,14 @@ export default function App() {
     }
     if (id === "finalists-page") {
       openFinalists();
+      return;
+    }
+    if (id === "winners-page") {
+      openWinners();
+      return;
+    }
+    if (id === "team-page") {
+      openTeam();
       return;
     }
     if (activePage !== "home") {
@@ -234,11 +266,13 @@ export default function App() {
             <FestivalLogo />
           </button>
 
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Primary">
+          <nav className="hidden lg:flex items-center gap-6" aria-label="Primary">
             {navItems.map((item) => {
               const active =
                 (item.id === "jury-page" && activePage === "jury") ||
                 (item.id === "finalists-page" && activePage === "finalists") ||
+                (item.id === "winners-page" && activePage === "winners") ||
+                (item.id === "team-page" && activePage === "team") ||
                 (activePage === "home" && item.id === activeNavId);
               return (
                 <button
@@ -311,6 +345,10 @@ export default function App() {
               <JuryPage />
             ) : activePage === "finalists" ? (
               <FinalistsPage />
+            ) : activePage === "winners" ? (
+              <WinnersPage />
+            ) : activePage === "team" ? (
+              <TeamPage />
             ) : (
               <>
             <HeroStage onOpenJury={openJury} openingActive={openingVisible} />
@@ -399,15 +437,21 @@ export default function App() {
               </div>
             </section>
 
+            {/* Winners */}
+            <WinnersSection onOpen={openWinners} />
+
+            {/* Finalists */}
+            <FinalistsPreview onOpen={openFinalists} />
+
+            {/* Jury */}
+            <JuryPreview onOpen={openJury} />
+
             {/* Network */}
             <section id="global-network-section" className="relative scroll-mt-20 overflow-hidden border-t border-brand-line">
               <div className="max-w-7xl mx-auto px-6 md:px-16 py-20 md:py-28">
                 <GlobalNetworkGallery />
               </div>
             </section>
-
-            {/* Finalists */}
-            <FinalistsPreview onOpen={openFinalists} />
 
             {/* Tickets */}
             <section id="submit-film-section" className="relative scroll-mt-20 overflow-hidden border-t border-brand-line">
@@ -426,7 +470,7 @@ export default function App() {
                     aria-hidden="true"
                   />
                   <div className="relative lg:col-span-8 p-8 md:p-14 space-y-6">
-                    <span className="label text-brand-copper">Reel 05 · Admit one</span>
+                    <span className="label text-brand-copper">Reel 07 · Admit one</span>
                     <h2 className="font-display uppercase text-[clamp(3rem,7vw,6rem)] leading-[0.9] text-brand-ink">
                       <MaskLine delay={0.25}>Take your seat</MaskLine>
                     </h2>

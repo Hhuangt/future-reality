@@ -529,6 +529,17 @@ export const finalists: FinalistFilm[] = [
     "landscape": true
   },
   {
+    "id": "2467",
+    "title": "Letting Go",
+    "directors": "Jose Prada",
+    "country": "",
+    "runtime": "",
+    "language": "",
+    "synopsis": "",
+    "poster": "/finalists/2467.webp",
+    "landscape": false
+  },
+  {
     "id": "2470",
     "title": "It's Not the Water",
     "directors": "Brian Dorrington Jr.",

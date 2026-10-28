@@ -13,9 +13,10 @@ function FilmCard({ film, index, onOpen }: { film: FinalistFilm; index: number; 
       <button
         type="button"
         onClick={onOpen}
-        className="group flex h-full w-full cursor-pointer flex-col border border-brand-line bg-brand-surface text-left"
+        className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden border border-brand-line bg-brand-surface text-left transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1 hover:border-brand-copper/60 hover:shadow-[0_22px_60px_rgba(0,0,0,0.32)]"
         aria-label={`View ${film.title}`}
       >
+        <div className="absolute inset-x-0 top-0 z-10 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-brand-amber to-transparent transition-transform duration-700 group-hover:scale-x-100" aria-hidden="true" />
         <div className="relative aspect-[2/3] w-full overflow-hidden border-b border-brand-line bg-black">
           <img
             src={assetUrl(film.poster)}

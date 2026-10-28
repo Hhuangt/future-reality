@@ -24,32 +24,37 @@ const sections: { id: JurySectionId; label: string; summary: string; members: Ju
 
 function Portrait({ member }: { member: JuryMember }) {
   return (
-    <div className="relative mx-auto h-36 w-36 md:h-40 md:w-40 rounded-full overflow-hidden ring-1 ring-brand-copper/50 ring-offset-4 ring-offset-transparent bg-brand-surface-2">
-      {member.photo ? (
-        <img
-          src={assetUrl(member.photo)}
-          alt={`${member.name} headshot`}
-          className="h-full w-full object-cover"
-          style={{ objectPosition: member.photoObjectPosition ?? "center top" }}
-          loading="lazy"
-          referrerPolicy="no-referrer"
-        />
-      ) : (
-        <span className="absolute inset-0 flex items-center justify-center font-display text-5xl text-brand-cream/80">
-          {member.initials}
-        </span>
-      )}
+    <div className="relative mx-auto w-fit">
+      <div className="absolute -inset-2 rounded-full border-[0.5px] border-brand-copper/15 transition-colors duration-500 group-hover:border-brand-copper/35" aria-hidden="true" />
+      <div className="absolute -inset-7 rounded-full bg-brand-copper/10 blur-2xl transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+      <div className="relative h-36 w-36 overflow-hidden rounded-full bg-brand-surface-2 ring-[0.5px] ring-brand-copper/45 ring-offset-2 ring-offset-transparent md:h-40 md:w-40">
+        {member.photo ? (
+          <img
+            src={assetUrl(member.photo)}
+            alt={`${member.name} headshot`}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+            style={{ objectPosition: member.photoObjectPosition ?? "center top" }}
+            loading="lazy"
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center font-display text-5xl text-brand-cream/80">
+            {member.initials}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
-function JuryCard({ member, panel }: { member: JuryMember; panel: string }) {
+function JuryCard({ member, panel, index }: { member: JuryMember; panel: string; index: number }) {
   const [open, setOpen] = useState(false);
   const paragraphs = member.bio?.split(/\n\n+/).filter(Boolean) ?? [];
   const long = (member.bio?.length ?? 0) > 280;
 
   return (
-    <article className="relative h-full flex flex-col bg-brand-surface border border-brand-line overflow-hidden">
+    <article className="group relative flex h-full flex-col overflow-hidden border border-brand-line bg-brand-surface transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1 hover:border-brand-copper/60 hover:shadow-[0_22px_60px_rgba(0,0,0,0.32)]">
+      <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-brand-amber to-transparent transition-transform duration-700 group-hover:scale-x-100" aria-hidden="true" />
       <div
         className="absolute left-1/2 top-0 -translate-x-1/2 h-64 w-[140%] pointer-events-none opacity-70"
         style={{
@@ -60,13 +65,18 @@ function JuryCard({ member, panel }: { member: JuryMember; panel: string }) {
         aria-hidden="true"
       />
 
-      <div className="relative pt-8 pb-6 px-6 text-center space-y-4">
-        <span className="font-serif text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cream/80 block">
-          {panel}
+      <div className="relative flex items-center justify-between gap-4 px-5 pt-5">
+        <span className="label text-[9px] text-brand-cream/70">{panel}</span>
+        <span className="font-mono text-[9px] tracking-[0.18em] text-brand-copper">
+          {String(index + 1).padStart(2, "0")}
         </span>
+      </div>
+
+      <div className="relative space-y-4 px-6 pb-7 pt-5 text-center">
         <Portrait member={member} />
-        <div className="space-y-2 pt-2">
-          <h3 className="font-display text-[28px] uppercase leading-none text-brand-ink">{member.name}</h3>
+        <div className="space-y-2 pt-3">
+          <h3 className="font-display text-[28px] uppercase leading-none text-brand-ink transition-colors duration-300 group-hover:text-brand-amber">{member.name}</h3>
+          <span className="mx-auto block h-px w-8 bg-brand-copper/70 transition-all duration-500 group-hover:w-12" aria-hidden="true" />
           <p className="font-serif text-[15px] text-brand-cream leading-snug">{member.role}</p>
           {member.organization && (
             <p className="font-serif text-[15px] font-bold text-brand-ink/90 leading-snug">{member.organization}</p>
@@ -112,6 +122,11 @@ function JuryCard({ member, panel }: { member: JuryMember; panel: string }) {
           </div>
         </div>
       )}
+
+      <div className="relative flex items-center justify-between border-t border-brand-line px-5 py-3">
+        <span className="label text-[8px] text-brand-muted">Future Reality</span>
+        <span className="label text-[8px] text-brand-muted">New York · 2026</span>
+      </div>
     </article>
   );
 }
@@ -139,7 +154,7 @@ function JurySection({
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {section.members.map((member, idx) => (
           <motion.div key={member.id} className="h-full" {...reveal((idx % 3) * 0.1, 40)}>
-            <JuryCard member={member} panel={section.label} />
+            <JuryCard member={member} panel={section.label} index={idx} />
           </motion.div>
         ))}
       </div>
