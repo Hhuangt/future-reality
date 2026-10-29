@@ -4,13 +4,22 @@ export type Winner = {
   directors: string;
   poster: string;
   landscape?: boolean;
+  opening?: boolean;
   awards: {
     title: string;
-    laurel: string;
+    laurel?: string;
   }[];
 };
 
 export const winners: Winner[] = [
+  {
+    id: "opening-seed-of-tomorrow",
+    title: "Seed of Tomorrow",
+    directors: "Yun Fan",
+    poster: "/finalists/seed-of-tomorrow.webp",
+    opening: true,
+    awards: [{ title: "Opening Film" }],
+  },
   {
     id: "2460",
     title: "WILL",

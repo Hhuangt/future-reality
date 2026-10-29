@@ -40,16 +40,18 @@ export function WinnerModal({ selected, onClose }: { selected: Winner | null; on
                 />
               </div>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {selected.awards.map((award) => (
-                <img
-                  key={award.title}
-                  src={assetUrl(award.laurel)}
-                  alt={`${award.title} winner laurel`}
-                  className="h-24 w-36 object-contain"
-                />
-              ))}
-            </div>
+            {selected.awards.some((award) => award.laurel) && (
+              <div className="flex flex-wrap gap-3">
+                {selected.awards.filter((award) => award.laurel).map((award) => (
+                  <img
+                    key={award.title}
+                    src={assetUrl(award.laurel!)}
+                    alt={`${award.title} winner laurel`}
+                    className="h-24 w-36 object-contain"
+                  />
+                ))}
+              </div>
+            )}
             <dl className="border-t border-brand-line">
               {[
                 ["Award", selected.awards.map((award) => award.title).join(" · ")],
@@ -118,13 +120,13 @@ function WinnerDetailCard({ winner, index, onOpen }: { winner: Winner; index: nu
           loading="lazy"
         />
         <span className="absolute left-4 top-4 font-mono text-[9px] tracking-[0.2em] text-white/75">
-          {String(index + 1).padStart(2, "0")} / WINNER
+          {winner.opening ? "OPENING" : `${String(index).padStart(2, "0")} / WINNER`}
         </span>
       </div>
 
       <div className="grid min-h-[13.5rem] shrink-0 gap-4 p-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <div className="min-w-0">
-          <span className="label text-[9px] text-brand-copper">2026 Official Award</span>
+          <span className="label text-[9px] text-brand-copper">{winner.opening ? "Out of Competition" : "2026 Official Award"}</span>
           <div className="mt-2">
             <AwardNames winner={winner} />
           </div>
@@ -136,17 +138,19 @@ function WinnerDetailCard({ winner, index, onOpen }: { winner: Winner; index: nu
           </p>
           <p className="label mt-4 text-[10px] text-brand-amber">View synopsis</p>
         </div>
-        <div className="flex gap-2 sm:flex-col">
-          {winner.awards.map((award) => (
-            <img
-              key={award.title}
-              src={assetUrl(award.laurel)}
-              alt={`${award.title} winner laurel`}
-              className="h-32 w-48 object-contain"
-              loading="lazy"
-            />
-          ))}
-        </div>
+        {winner.awards.some((award) => award.laurel) && (
+          <div className="flex gap-2 sm:flex-col">
+            {winner.awards.filter((award) => award.laurel).map((award) => (
+              <img
+                key={award.title}
+                src={assetUrl(award.laurel!)}
+                alt={`${award.title} winner laurel`}
+                className="h-32 w-48 object-contain"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        )}
       </div>
       </button>
     </motion.article>
@@ -168,7 +172,7 @@ export default function WinnersPage() {
             <MaskLine delay={0.1}>The Winners</MaskLine>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl font-serif text-lg leading-relaxed text-brand-ink/85 md:text-xl">
-            Nine films recognized across ten awards for storytelling, visual craft, sound, worldbuilding, and intentional use of AI.
+            Seed of Tomorrow opens the festival out of competition, alongside nine films recognized across ten awards.
           </p>
         </div>
       </section>

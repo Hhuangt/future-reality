@@ -8,9 +8,22 @@ export interface FinalistFilm {
   synopsis: string;
   poster: string;
   landscape: boolean;
+  badge?: string;
 }
 
 export const finalists: FinalistFilm[] = [
+  {
+    "id": "opening-seed-of-tomorrow",
+    "title": "Seed of Tomorrow",
+    "directors": "Yun Fan",
+    "country": "",
+    "runtime": "",
+    "language": "",
+    "synopsis": "What if reality begins with imagination?\n\nSeed of Tomorrow is the Festival Opening Film of the 2026 Future Reality AI Film Festival, screening out of competition.",
+    "poster": "/finalists/seed-of-tomorrow.webp",
+    "landscape": false,
+    "badge": "Opening Film · Out of Competition"
+  },
   {
     "id": "1016",
     "title": "Let's Play Ball!",

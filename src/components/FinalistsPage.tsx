@@ -33,6 +33,9 @@ function FilmCard({ film, index, onOpen }: { film: FinalistFilm; index: number; 
         </div>
 
         <div className="flex flex-1 flex-col p-4 md:p-5">
+          {film.badge && (
+            <span className="label mb-3 text-[9px] text-brand-amber">{film.badge}</span>
+          )}
           <h3 className="font-display text-2xl uppercase leading-[0.95] text-brand-ink transition-colors group-hover:text-brand-amber">
             {film.title}
           </h3>
@@ -42,7 +45,7 @@ function FilmCard({ film, index, onOpen }: { film: FinalistFilm; index: number; 
             </p>
           )}
           <div className="mt-auto flex items-end justify-between gap-3 border-t border-brand-line pt-4">
-            <span className="label text-[9px] text-brand-copper">{details || "Official selection"}</span>
+            <span className="label text-[9px] text-brand-copper">{details || film.badge || "Official selection"}</span>
             <span className="material-symbols-outlined text-lg text-brand-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-amber" aria-hidden="true">
               arrow_forward
             </span>
@@ -69,7 +72,7 @@ export default function FinalistsPage() {
       const matchesCountry = country === "all" || film.country === country;
       const matchesQuery =
         !normalized ||
-        [film.title, film.directors, film.country, film.synopsis]
+        [film.title, film.directors, film.country, film.synopsis, film.badge]
           .join(" ")
           .toLocaleLowerCase()
           .includes(normalized);
@@ -95,7 +98,7 @@ export default function FinalistsPage() {
             Finalists
           </motion.h1>
           <p className="mx-auto mt-7 max-w-2xl font-serif text-lg leading-relaxed text-brand-ink/85 md:text-xl">
-            {finalists.length} films selected from a global field of AI-native and AI-assisted cinematic work.
+            {finalists.filter((film) => !film.badge).length} films selected from a global field of AI-native and AI-assisted cinematic work, with Seed of Tomorrow opening the festival out of competition.
           </p>
         </div>
       </section>
@@ -178,7 +181,7 @@ export default function FinalistsPage() {
         isOpen={selected !== null}
         onClose={() => setSelected(null)}
         title={selected?.title ?? ""}
-        kicker={selected ? "Official finalist" : undefined}
+        kicker={selected ? selected.badge ?? "Official finalist" : undefined}
         size="wide"
       >
         {selected && (
@@ -196,6 +199,7 @@ export default function FinalistsPage() {
               </div>
               <dl className="border-t border-brand-line">
                 {[
+                  ["Screening", selected.badge],
                   ["Director", selected.directors],
                   ["Country", selected.country],
                   ["Runtime", selected.runtime],
